@@ -3,7 +3,6 @@
 namespace Wikimedia\Purtle\Tests;
 
 use PHPUnit_Framework_TestCase;
-use Wikibase\Repo\Tests\Rdf\NTriplesRdfTestHelper;
 use Wikimedia\Purtle\RdfWriter;
 
 /**
@@ -14,18 +13,7 @@ use Wikimedia\Purtle\RdfWriter;
  * @author Daniel Kinzler
  * @author Thiemo Mättig
  */
-abstract class RdfWriterTestBase extends PHPUnit_Framework_TestCase{
-
-	/**
-	 * @var NTriplesRdfTestHelper
-	 */
-	private $helper;
-
-	protected function setUp() {
-		parent::setUp();
-
-		$this->helper = new NTriplesRdfTestHelper();
-	}
+abstract class RdfWriterTestBase extends PHPUnit_Framework_TestCase {
 
 	abstract protected function getFileSuffix();
 
@@ -326,11 +314,49 @@ abstract class RdfWriterTestBase extends PHPUnit_Framework_TestCase{
 	private function assertOutputLines( $datasetName, $actual ) {
 		$path = __DIR__ . '/../data/' . $datasetName . '.' . $this->getFileSuffix();
 
-		$this->helper->assertNTriplesEquals(
+		$this->assertNTriplesEquals(
 			file_get_contents( $path ),
 			$actual,
 			"Result mismatches data in $path"
 		);
+	}
+
+
+	/**
+	 * @param string[]|string $nTriples
+	 *
+	 * @return string[] Sorted alphabetically.
+	 */
+	protected function normalizeNTriples( $nTriples ) {
+		if ( is_string( $nTriples ) ) {
+			// Trim and ignore newlines at the end of the file only.
+			$nTriples = explode( "\n", rtrim( $nTriples, "\n" ) );
+		}
+
+		sort( $nTriples );
+
+		return $nTriples;
+	}
+
+	/**
+	 * @param string[]|string $expected
+	 * @param string[]|string $actual
+	 * @param string $message
+	 */
+	protected function assertNTriplesEquals( $expected, $actual, $message = '' ) {
+		$expected = $this->normalizeNTriples( $expected );
+		$actual = $this->normalizeNTriples( $actual );
+
+		// Comparing $expected and $actual directly would show triples that are present in both but
+		// shifted in position. That makes the output hard to read. Calculating the $missing and
+		// $extra sets helps.
+		$extra = array_diff( $actual, $expected );
+		$missing = array_diff( $expected, $actual );
+
+		// Cute: $missing and $extra can be equal only if they are empty. Comparing them here
+		// directly looks a bit odd in code, but produces meaningful output, especially if the input
+		// was sorted.
+		$this->assertEquals( $missing, $extra, $message );
 	}
 
 	//FIXME: test quoting/escapes!

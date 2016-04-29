@@ -3,6 +3,7 @@
 namespace Wikimedia\Purtle\Tests;
 
 use InvalidArgumentException;
+use PHPUnit_Framework_TestCase;
 use Wikimedia\Purtle\RdfWriter;
 use Wikimedia\Purtle\RdfWriterFactory;
 
@@ -23,7 +24,7 @@ use Wikimedia\Purtle\RdfWriterFactory;
  * @author Daniel Kinzler
  * @author Thiemo Mättig
  */
-class RdfWriterFactoryTest extends \MediaWikiTestCase {
+class RdfWriterFactoryTest extends PHPUnit_Framework_TestCase {
 
 	public function testSupportedFormats() {
 		$factory = new RdfWriterFactory();
