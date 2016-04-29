@@ -1,19 +1,22 @@
 <?php
 
+// Integration with MediaWiki extension registration system.
+
 if ( !defined( 'MEDIAWIKI' ) ) {
 	die( 'Not an entry point.' );
 }
 
-$GLOBALS['wgExtensionCredits']['wikibase'][] = array(
+$GLOBALS['wgExtensionCredits']['purtle'][] = array(
 	'path' => __FILE__,
 	'name' => 'Purtle',
-	'version' => WIKIBASE_VIEW_VERSION,
+	'version' => PURTLE_VERSION,
 	'author' => array(
 		'Daniel Kinzler',
 		'Stas Malyshev',
+		'Thiemo Mättig'
 	),
-	'url' => 'https://git.wikimedia.org/blob/mediawiki%2Fextensions%2FWikibase/master/purtle%2FREADME.md',
-	'description' => 'A fast, lightweight RDF generator',
+	'url' => 'https://mediawiki.org/Purtle',
+	'description' => 'Fast streaming RDF serializer',
 	'license-name' => 'GPL-2.0+'
 );
 

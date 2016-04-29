@@ -1,0 +1,69 @@
+{
+	"name": "wikimedia/purtle",
+	"type": "library",
+	"description": "Fast streaming RDF serializer",
+	"keywords": [
+		"RDF",
+		"Serializer",
+		"Turtle"
+	],
+	"homepage": "https://mediawiki.org/Purtle",
+	"license": "GPL-2.0+",
+	"authors": [
+		{
+			"name": "Daniel Kinzler"
+		},
+		{
+			"name": "Stanislav Malyshev"
+		},
+		{
+			"name": "Thiemo Mättig"
+		}
+	],
+	"support": {
+		"irc": "irc://irc.freenode.net/wikimedia-dev"
+	},
+	"require": {
+		"php": ">=5.3.0"
+	},
+	"require-dev": {
+		"ockcyp/covers-validator": "~0.4.0",
+		"squizlabs/php_codesniffer": "~2.3",
+		"phpunit/phpunit": "4.8.24",
+		"phpmd/phpmd": "~2.3"
+	},
+	"autoload": {
+		"files" : [
+			"Purtle.php"
+		],
+		"psr-4": {
+			"Wikimedia\\Purtle\\": "src/"
+		}
+	},
+	"extra": {
+		"branch-alias": {
+			"dev-master": "1.0.x-dev"
+		}
+	},
+	"scripts": {
+		"test": [
+			"composer validate --no-interaction",
+			"phpunit",
+			"vendor/bin/covers-validator"
+		],
+		"cs": [
+			"composer phpcs",
+			"composer phpmd"
+		],
+		"ci": [
+			"composer test",
+			"composer cs"
+		],
+		"phpcs": [
+			"vendor/bin/phpcs src/* tests/* --standard=phpcs.xml --extensions=php -sp"
+		],
+		"phpmd": [
+			"vendor/bin/phpmd src/ text phpmd.xml"
+		]
+	}
+}
