@@ -15,7 +15,7 @@ $GLOBALS['wgExtensionCredits']['purtle'][] = array(
 		'Stas Malyshev',
 		'Thiemo Mättig'
 	),
-	'url' => 'https://mediawiki.org/Purtle',
+	'url' => 'https://mediawiki.org/wiki/Purtle',
 	'description' => 'Fast streaming RDF serializer',
 	'license-name' => 'GPL-2.0+'
 );
