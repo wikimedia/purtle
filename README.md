@@ -5,6 +5,11 @@ generating RDF output in Turtle, XML/RDF or N-Triples. The fluent interface allo
 resulting PHP code to be structured just like Turtle notation for RDF, hence the name: "Purtle"
 is a contraction of "PHP Turtle".
 
+The three concrete classes implementing the common `RdfWriter` interface are:
+* `TurtleRdfWriter` outputs Turtle
+* `XmlRdfWriter` outputs XML/RDF
+* `NTriplesRdfWriter` outputs N-Triples
+
 The PHP code would look something like this:
 
     $writer = new TurtleRdfWriter();
