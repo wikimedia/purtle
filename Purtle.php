@@ -5,7 +5,7 @@ if ( defined( 'PURTLE_VERSION' ) ) {
 	return 1;
 }
 
-define( 'PURTLE_VERSION', '1.0' );
+define( 'PURTLE_VERSION', '1.0.3' );
 
 // Include the composer autoloader if it is present.
 if ( is_readable( __DIR__ . '/vendor/autoload.php' ) ) {
