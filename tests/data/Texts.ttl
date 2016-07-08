@@ -3,4 +3,6 @@
 @prefix acme: <http://acme.test/> .
 
 acme:Bongos acme:sounds "Bom"@de,
-		"Bam"@en .
+		"Bam"@en,
+		"Como estas"@es-419,
+		"What?" .

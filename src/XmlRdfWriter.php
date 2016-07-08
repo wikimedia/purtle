@@ -174,7 +174,11 @@ class XmlRdfWriter extends RdfWriterBase {
 	}
 
 	protected function writeText( $text, $language = null ) {
-		$attr = empty( $language ) ? array() : array( 'xml:lang' => $language );
+		if ( !empty( $language ) && preg_match( '/^[0-9A-Za-z-]+$/', $language ) ) {
+			$attr = array( 'xml:lang' => $language );
+		} else {
+			$attr = array();
+		}
 
 		$this->write( "\t\t" );
 		$this->tag(

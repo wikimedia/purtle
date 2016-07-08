@@ -52,7 +52,8 @@ abstract class N3RdfWriterBase extends RdfWriterBase {
 		$value = $this->quoter->escapeLiteral( $text );
 		$this->write( '"' . $value . '"' );
 
-		if ( $language !== null ) {
+		// preg_match is somewhat (12%) slower than strspn but more readable
+		if ( $language !== null && preg_match( '/^[0-9A-Za-z-]+$/', $language ) ) {
 			$this->write( '@' . $language );
 		}
 	}
