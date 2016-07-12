@@ -186,6 +186,16 @@ abstract class RdfWriterBase implements RdfWriter {
 	}
 
 	/**
+	 * @param string|null $languageCode
+	 *
+	 * @return bool
+	 */
+	protected function isValidLanguageCode( $languageCode ) {
+		// preg_match is somewhat (12%) slower than strspn but more readable
+		return $languageCode !== null && preg_match( '/^[\da-z-]{2,}$/i', $languageCode );
+	}
+
+	/**
 	 * @return RdfWriter
 	 */
 	final public function sub() {
