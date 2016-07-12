@@ -219,8 +219,7 @@ abstract class RdfWriterTestBase extends PHPUnit_Framework_TestCase {
 				->text( 'Bom', 'de' )
 				->text( 'Bam', 'en' )
 				->text( 'Como estas', 'es-419' )
-				->text( 'What?', 'bad tag' )
-		;
+				->text( 'What?', 'bad tag' );
 		$writer->finish();
 
 		$rdf = $writer->drain();
