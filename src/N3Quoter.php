@@ -40,7 +40,49 @@ class N3Quoter {
 	}
 
 	public function escapeLiteral( $s ) {
-		$escaped = addcslashes( $s, "\x0..\x1F\"\\" );
+		// String escapes. Note that the N3 spec is more restrictive than the Turtle and TR
+		// specifications, see <https://www.w3.org/TeamSubmission/n3/#escaping>
+		// and <https://www.w3.org/TR/turtle/#string>
+		// and <https://www.w3.org/TR/n-triples/#grammar-production-literal>.
+		// Allowed escapes according to the N3 spec are: \r, \n, \t, \', \", \\;
+		// The single quote however does not require escaping when used in double quotes.
+		$escaped = addcslashes( $s, "\r\n\t\"\\" );
+
+		// Handle other control characters using numeric unicode escape sequences
+		$escaped = strtr( $escaped, array(
+			"\x00" => '\u0000',
+			"\x01" => '\u0001',
+			"\x02" => '\u0002',
+			"\x03" => '\u0003',
+			"\x04" => '\u0004',
+			"\x05" => '\u0005',
+			"\x06" => '\u0006',
+			"\x07" => '\u0007',
+			"\x08" => '\u0008',
+			"\x09" => '\u0009',
+			"\x0A" => '\u000A',
+			"\x0B" => '\u000B',
+			"\x0C" => '\u000C',
+			"\x0D" => '\u000D',
+			"\x0E" => '\u000E',
+			"\x0F" => '\u000F',
+			"\x10" => '\u0010',
+			"\x11" => '\u0011',
+			"\x12" => '\u0012',
+			"\x13" => '\u0013',
+			"\x14" => '\u0014',
+			"\x15" => '\u0015',
+			"\x16" => '\u0016',
+			"\x17" => '\u0017',
+			"\x18" => '\u0018',
+			"\x19" => '\u0019',
+			"\x1A" => '\u001A',
+			"\x1B" => '\u001B',
+			"\x1C" => '\u001C',
+			"\x1D" => '\u001D',
+			"\x1E" => '\u001E',
+			"\x1F" => '\u001F',
+		) );
 
 		if ( $this->escaper !== null ) {
 			$escaped = $this->escaper->escapeString( $escaped );

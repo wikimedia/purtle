@@ -58,6 +58,12 @@ class N3QuoterTest extends PHPUnit_Framework_TestCase {
 			array( "Hello\tWorld", 'Hello\tWorld' ),
 			array( 'Hällo Wörld', 'Hällo Wörld', false ),
 			array( 'Hällo Wörld', 'H\u00E4llo W\u00F6rld', true ),
+
+			// T145754 + T145757
+			array( '\a', '\\\\a' ),
+			array( "\x07", '\u0007' ),
+			array( "\x00", '\u0000' ),
+			array( "\x1F", '\u001F' ),
 		);
 	}
 
