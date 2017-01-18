@@ -309,6 +309,17 @@ abstract class RdfWriterTestBase extends PHPUnit_Framework_TestCase {
 		$this->assertOutputLines( 'NumberedBlankNode', $rdf );
 	}
 
+	public function testQuotesAndSpecials() {
+		$writer = $this->newWriter();
+		$writer->prefix( 'exterms', 'http://www.example.org/terms/' );
+		$writer->start();
+		$writer->about('exterms', 'Duck')->say('exterms', 'says')->text('Duck says: "Quack!"');
+		$writer->about('exterms', 'Cow')->say('exterms', 'says')->text("Cow says:\n\r 'Moo! \\Moo!'");
+		$writer->about('exterms', 'Bear')->say('exterms', 'says')->text("Bear says: Превед!");
+		$rdf = $writer->drain();
+		$this->assertOutputLines( 'TextWithSpecialChars', $rdf );
+	}
+
 	/**
 	 * @param string $datasetName
 	 * @param string[]|string $actual
@@ -360,7 +371,6 @@ abstract class RdfWriterTestBase extends PHPUnit_Framework_TestCase {
 		$this->assertEquals( $missing, $extra, $message );
 	}
 
-	//FIXME: test quoting/escapes!
 	//FIXME: test non-ascii literals!
 	//FIXME: test uerl-encoding
 	//FIXME: test IRIs!

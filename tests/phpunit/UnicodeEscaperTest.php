@@ -30,9 +30,11 @@ class UnicodeEscaperTest extends \PHPUnit_Framework_TestCase {
 				'!#$%&\'()*+,-./0...9:;<=>?@A...Z[\\]^_`a...z{|}~',
 				'!#$%&\'()*+,-./0...9:;<=>?@A...Z[\\]^_`a...z{|}~'
 			),
+			// No longer quoting double quote - this leads to double-quoting on NTriples
+			// Encompassing format should quote it instead
 			'double quote' => array(
 				'"',
-				'\"'
+				'"'
 			),
 			'4-digit hex below U+10000' => array(
 				"\x7F...\xEF\xBF\xBF",
