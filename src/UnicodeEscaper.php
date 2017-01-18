@@ -100,16 +100,8 @@ class UnicodeEscaper {
 			return '\r'; /* #xD (13) */
 		} elseif ( $no < 32 ) {
 			return '\u' . sprintf( '%04X', $no ); /* #xE-#x1F (14-31) */
-		} elseif ( $no < 34 ) {
-			return $c; /* #x20-#x21 (32-33) */
-		} elseif ( $no == 34 ) {
-			return '\"'; /* #x22 (34) */
-		} elseif ( $no < 92 ) {
-			return $c; /* #x23-#x5B (35-91) */
-		} elseif ( $no == 92 ) {
-			return '\\'; /* #x5C (92) */
 		} elseif ( $no < 127 ) {
-			return $c; /* #x5D-#x7E (93-126) */
+			return $c; /* #x20-#x7E (32-126) */
 		} elseif ( $no < 65536 ) {
 			return '\u' . sprintf( '%04X', $no ); /* #x7F-#xFFFF (128-65535) */
 		} elseif ( $no < 1114112 ) {
