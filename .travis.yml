@@ -13,9 +13,10 @@ install: travis_retry composer install
 script: composer ci
 
 notifications:
+  email: false
   irc:
     channels:
-      - "chat.freenode.net#wikimedia-dev"
+      - "chat.freenode.net#wikidata-feed"
     on_success: change
     on_failure: always
     template:
