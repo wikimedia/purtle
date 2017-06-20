@@ -68,32 +68,32 @@ class RdfWriterFactoryTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function provideFormats() {
-		return array(
+		return [
 			// N3 (currently falls through to turtle)
-			array( 'N3', 'n3', 'n3', 'text/n3' ),
-			array( 'text/n3', 'n3', 'n3', 'text/n3' ),
-			array( 'text/rdf+n3', 'n3', 'n3', 'text/n3' ),
+			[ 'N3', 'n3', 'n3', 'text/n3' ],
+			[ 'text/n3', 'n3', 'n3', 'text/n3' ],
+			[ 'text/rdf+n3', 'n3', 'n3', 'text/n3' ],
 
-			array( 'ttl', 'turtle', 'ttl', 'text/turtle' ),
-			array( 'turtle', 'turtle', 'ttl', 'text/turtle' ),
-			array( 'text/turtle', 'turtle', 'ttl', 'text/turtle' ),
-			array( 'application/x-turtle', 'turtle', 'ttl', 'text/turtle' ),
+			[ 'ttl', 'turtle', 'ttl', 'text/turtle' ],
+			[ 'turtle', 'turtle', 'ttl', 'text/turtle' ],
+			[ 'text/turtle', 'turtle', 'ttl', 'text/turtle' ],
+			[ 'application/x-turtle', 'turtle', 'ttl', 'text/turtle' ],
 
-			array( 'nt', 'ntriples', 'nt', 'application/n-triples' ),
-			array( 'ntriples', 'ntriples', 'nt', 'application/n-triples' ),
-			array( 'n-triples', 'ntriples', 'nt', 'application/n-triples' ),
-			array( 'text/plain', 'ntriples', 'nt', 'application/n-triples' ),
-			array( 'text/n-triples', 'ntriples', 'nt', 'application/n-triples' ),
-			array( 'application/ntriples', 'ntriples', 'nt', 'application/n-triples' ),
-			array( 'application/n-triples', 'ntriples', 'nt', 'application/n-triples' ),
+			[ 'nt', 'ntriples', 'nt', 'application/n-triples' ],
+			[ 'ntriples', 'ntriples', 'nt', 'application/n-triples' ],
+			[ 'n-triples', 'ntriples', 'nt', 'application/n-triples' ],
+			[ 'text/plain', 'ntriples', 'nt', 'application/n-triples' ],
+			[ 'text/n-triples', 'ntriples', 'nt', 'application/n-triples' ],
+			[ 'application/ntriples', 'ntriples', 'nt', 'application/n-triples' ],
+			[ 'application/n-triples', 'ntriples', 'nt', 'application/n-triples' ],
 
-			array( 'xml', 'rdfxml', 'rdf', 'application/rdf+xml' ),
-			array( 'rdf', 'rdfxml', 'rdf', 'application/rdf+xml' ),
-			array( 'rdfxml', 'rdfxml', 'rdf', 'application/rdf+xml' ),
-			array( 'application/rdf+xml', 'rdfxml', 'rdf', 'application/rdf+xml' ),
-			array( 'application/xml', 'rdfxml', 'rdf', 'application/rdf+xml' ),
-			array( 'text/xml', 'rdfxml', 'rdf', 'application/rdf+xml' ),
-		);
+			[ 'xml', 'rdfxml', 'rdf', 'application/rdf+xml' ],
+			[ 'rdf', 'rdfxml', 'rdf', 'application/rdf+xml' ],
+			[ 'rdfxml', 'rdfxml', 'rdf', 'application/rdf+xml' ],
+			[ 'application/rdf+xml', 'rdfxml', 'rdf', 'application/rdf+xml' ],
+			[ 'application/xml', 'rdfxml', 'rdf', 'application/rdf+xml' ],
+			[ 'text/xml', 'rdfxml', 'rdf', 'application/rdf+xml' ],
+		];
 	}
 
 	/**

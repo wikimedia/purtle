@@ -21,12 +21,12 @@ abstract class RdfWriterBase implements RdfWriter {
 	/**
 	 * @var array An array of strings, RdfWriters, or closures.
 	 */
-	private $buffer = array();
+	private $buffer = [];
 
 	/**
 	 * @var RdfWriter[] sub-writers.
 	 */
-	private $subs = array();
+	private $subs = [];
 
 	const STATE_START = 0;
 	const STATE_DOCUMENT = 5;
@@ -43,28 +43,28 @@ abstract class RdfWriterBase implements RdfWriter {
 	/**
 	 * Shorthands that can be used in place of IRIs, e.g. ("a" to mean rdf:type).
 	 *
-	 * @var string[] a map of shorthand names to array( $base, $local ) pairs.
+	 * @var string[] a map of shorthand names to [ $base, $local ] pairs.
 	 * @todo Handle "a" as a special case directly. Use for custom "variables" like %currentValue
 	 *  instead.
 	 */
-	private $shorthands = array();
+	private $shorthands = [];
 
 	/**
 	 * @var string[] a map of prefixes to base IRIs
 	 */
-	private $prefixes = array();
+	private $prefixes = [];
 
 	/**
 	 * @var array pair to store the current subject.
 	 * Holds the $base and $local parameters passed to about().
 	 */
-	protected $currentSubject = array( null, null );
+	protected $currentSubject = [ null, null ];
 
 	/**
 	 * @var array pair to store the current predicate.
 	 * Holds the $base and $local parameters passed to say().
 	 */
-	protected $currentPredicate = array( null, null );
+	protected $currentPredicate = [ null, null ];
 
 	/**
 	 * @var BNodeLabeler
@@ -136,7 +136,7 @@ abstract class RdfWriterBase implements RdfWriter {
 	 * @param string $local
 	 */
 	protected function registerShorthand( $shorthand, $prefix, $local ) {
-		$this->shorthands[$shorthand] = array( $prefix, $local );
+		$this->shorthands[$shorthand] = [ $prefix, $local ];
 	}
 
 	/**
@@ -301,7 +301,7 @@ abstract class RdfWriterBase implements RdfWriter {
 		$this->state( self::STATE_FINISH );
 
 		// Detaches all subs.
-		$this->subs = array();
+		$this->subs = [];
 	}
 
 	/**
@@ -319,7 +319,7 @@ abstract class RdfWriterBase implements RdfWriter {
 		$this->flattenBuffer();
 
 		$rdf = join( '', $this->buffer );
-		$this->buffer = array();
+		$this->buffer = [];
 
 		return $rdf;
 	}
@@ -501,28 +501,28 @@ abstract class RdfWriterBase implements RdfWriter {
 	 * First state is "from", second is "to"
 	 * @var array
 	 */
-	protected $transitionTable = array(
-			self::STATE_START => array(
+	protected $transitionTable = [
+			self::STATE_START => [
 					self::STATE_DOCUMENT => true,
-			),
-			self::STATE_DOCUMENT => array(
+			],
+			self::STATE_DOCUMENT => [
 					self::STATE_DOCUMENT => true,
 					self::STATE_SUBJECT => true,
 					self::STATE_FINISH => true,
-			),
-			self::STATE_SUBJECT => array(
+			],
+			self::STATE_SUBJECT => [
 					self::STATE_PREDICATE => true,
-			),
-			self::STATE_PREDICATE => array(
+			],
+			self::STATE_PREDICATE => [
 					self::STATE_OBJECT => true,
-			),
-			self::STATE_OBJECT => array(
+			],
+			self::STATE_OBJECT => [
 					self::STATE_DOCUMENT => true,
 					self::STATE_SUBJECT => true,
 					self::STATE_PREDICATE => true,
 					self::STATE_OBJECT => true,
-			),
-	);
+			],
+	];
 
 	/**
 	 * Perform a state transition. Writer states roughly correspond to states in a naive

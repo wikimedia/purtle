@@ -34,12 +34,12 @@ class TurtleRdfWriter extends N3RdfWriterBase {
 		N3Quoter $quoter = null
 	) {
 		parent::__construct( $role, $labeler, $quoter );
-		$this->transitionTable[self::STATE_OBJECT] = array(
+		$this->transitionTable[self::STATE_OBJECT] = [
 			self::STATE_DOCUMENT => " .\n",
 			self::STATE_SUBJECT => " .\n\n",
 			self::STATE_PREDICATE => " ;\n\t",
 			self::STATE_OBJECT => ",\n\t\t",
-		);
+		];
 		$this->transitionTable[self::STATE_DOCUMENT][self::STATE_SUBJECT] = "\n";
 		$this->transitionTable[self::STATE_SUBJECT][self::STATE_PREDICATE] = ' ';
 		$this->transitionTable[self::STATE_PREDICATE][self::STATE_OBJECT] = ' ';

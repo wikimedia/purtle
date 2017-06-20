@@ -20,7 +20,7 @@ class RdfWriterFactory {
 	 * @return string[]
 	 */
 	public function getSupportedFormats() {
-		return array( 'n3', 'turtle', 'ntriples', 'rdfxml' );
+		return [ 'n3', 'turtle', 'ntriples', 'rdfxml' ];
 	}
 
 	/**
@@ -39,16 +39,16 @@ class RdfWriterFactory {
 
 		switch ( strtolower( $format ) ) {
 			case 'n3':
-				return array( 'text/n3', 'text/rdf+n3' );
+				return [ 'text/n3', 'text/rdf+n3' ];
 
 			case 'turtle':
-				return array( 'text/turtle', 'application/x-turtle' );
+				return [ 'text/turtle', 'application/x-turtle' ];
 
 			case 'ntriples':
-				return array( 'application/n-triples', 'text/n-triples', 'text/plain' );
+				return [ 'application/n-triples', 'text/n-triples', 'text/plain' ];
 
 			case 'rdfxml':
-				return array( 'application/rdf+xml', 'application/xml', 'text/xml' );
+				return [ 'application/rdf+xml', 'application/xml', 'text/xml' ];
 
 			default:
 				throw new InvalidArgumentException( 'Bad format: ' . $format );

@@ -6,19 +6,19 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	die( 'Not an entry point.' );
 }
 
-$GLOBALS['wgExtensionCredits']['purtle'][] = array(
+$GLOBALS['wgExtensionCredits']['purtle'][] = [
 	'path' => __FILE__,
 	'name' => 'Purtle',
 	'version' => PURTLE_VERSION,
-	'author' => array(
+	'author' => [
 		'Daniel Kinzler',
 		'Stas Malyshev',
 		'Thiemo Mättig'
-	),
+	],
 	'url' => 'https://mediawiki.org/wiki/Purtle',
 	'description' => 'Fast streaming RDF serializer',
 	'license-name' => 'GPL-2.0+'
-);
+];
 
 
 $GLOBALS['wgHooks']['UnitTestsList'][] = function( array &$paths ) {

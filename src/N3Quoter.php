@@ -25,7 +25,7 @@ class N3Quoter {
 
 	public function escapeIRI( $iri ) {
 		//FIXME: apply unicode escaping?!
-		return strtr( $iri, array(
+		return strtr( $iri, [
 				' ' => '%20',
 				'"' => '%22',
 				'<' => '%3C',
@@ -36,7 +36,7 @@ class N3Quoter {
 				'|' => '%7C',
 				'{' => '%7B',
 				'}' => '%7D',
-		) );
+		] );
 	}
 
 	public function escapeLiteral( $s ) {
@@ -47,7 +47,7 @@ class N3Quoter {
 		// Allowed escapes according to the N3 spec are:
 		// ECHAR	::=	'\' [tbnrf"'\]
 		// The single quote however does not require escaping when used in double quotes.
-		$escaped = strtr( $s, array(
+		$escaped = strtr( $s, [
 			"\x00" => '\u0000',
 			"\x01" => '\u0001',
 			"\x02" => '\u0002',
@@ -82,7 +82,7 @@ class N3Quoter {
 			"\x1F" => '\u001F',
 			'"' => '\"',
 			'\\' => '\\\\',
-		) );
+		] );
 
 		if ( $this->escaper !== null ) {
 			$escaped = $this->escaper->escapeString( $escaped );

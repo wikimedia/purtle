@@ -26,13 +26,13 @@ class BNodeLabelerTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function invalidConstructorArgumentsProvider() {
-		return array(
-			array( null, 1 ),
-			array( 1, 1 ),
-			array( 'prefix', null ),
-			array( 'prefix', 0 ),
-			array( 'prefix', '1' ),
-		);
+		return [
+			[ null, 1 ],
+			[ 1, 1 ],
+			[ 'prefix', null ],
+			[ 'prefix', 0 ],
+			[ 'prefix', '1' ],
+		];
 	}
 
 	public function testGetLabel() {

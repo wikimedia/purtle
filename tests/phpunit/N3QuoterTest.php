@@ -18,28 +18,28 @@ use Wikimedia\Purtle\N3Quoter;
 class N3QuoterTest extends PHPUnit_Framework_TestCase {
 
 	public function provideEscapeIRI() {
-		return array(
-			array(
+		return [
+			[
 				'http://acme.com/test.php?x=y&foo=bar#part',
 				'http://acme.com/test.php?x=y&foo=bar#part',
-			),
-			array(
+			],
+			[
 				'http://acme.com/"evil stuff"',
 				'http://acme.com/%22evil%20stuff%22',
-			),
-			array(
+			],
+			[
 				'http://acme.com/<wacky stuff>',
 				'http://acme.com/%3Cwacky%20stuff%3E',
-			),
-			array(
+			],
+			[
 				'http://acme.com\\back\\slash',
 				'http://acme.com%5Cback%5Cslash',
-			),
-			array(
+			],
+			[
 				'http://acme.com/~`!@#$%^&*()-_=+[]{}|:;\'",.<>/?',
 				'http://acme.com/~%60!@#$%%5E&*()-_=+[]%7B%7D%7C:;\'%22,.%3C%3E/?',
-			),
-		);
+			],
+		];
 	}
 
 	/**
@@ -52,16 +52,15 @@ class N3QuoterTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function provideEscapeLiteral() {
-		return array(
-			array( 'Hello World', 'Hello World' ),
-			array( "Hello\nWorld", 'Hello\nWorld' ),
-			array( "Hello\tWorld", 'Hello\tWorld' ),
-			array( 'Hällo Wörld', 'Hällo Wörld', false ),
-			array( 'Hällo Wörld', 'H\u00E4llo W\u00F6rld', true ),
-			array( '\a', '\\\\a' ),
-			array( "\x7\v\0\x1F", '\u0007\u000B\u0000\u001F' ),
-
-		);
+		return [
+			[ 'Hello World', 'Hello World' ],
+			[ "Hello\nWorld", 'Hello\nWorld' ],
+			[ "Hello\tWorld", 'Hello\tWorld' ],
+			[ 'Hällo Wörld', 'Hällo Wörld', false ],
+			[ 'Hällo Wörld', 'H\u00E4llo W\u00F6rld', true ],
+			[ '\a', '\\\\a' ],
+			[ "\x7\v\0\x1F", '\u0007\u000B\u0000\u001F' ],
+		];
 	}
 
 	/**

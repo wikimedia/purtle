@@ -21,12 +21,12 @@ class NTriplesRdfWriter extends N3RdfWriterBase {
 		//NOTE: if this is changed, getMimeType must be changed accordingly.
 		$this->quoter->setEscapeUnicode( true );
 
-		$this->transitionTable[self::STATE_OBJECT] = array(
+		$this->transitionTable[self::STATE_OBJECT] = [
 				self::STATE_DOCUMENT => " .\n",
 				self::STATE_SUBJECT => " .\n",
 				self::STATE_PREDICATE => " .\n",
 				self::STATE_OBJECT => " .\n",
-		);
+		];
 	}
 
 	protected function expandSubject( &$base, &$local ) {
