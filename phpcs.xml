@@ -26,8 +26,6 @@
 
     <rule ref="PSR2.Files" />
 
-    <rule ref="Squiz.Arrays.ArrayBracketSpacing" />
-    <rule ref="Squiz.Classes.DuplicateProperty" />
     <rule ref="Squiz.Classes.SelfMemberReference" />
 	<rule ref="Squiz.ControlStructures.ControlSignature" />
     <rule ref="Squiz.Functions.FunctionDuplicateArgument" />
