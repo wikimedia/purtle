@@ -33,9 +33,6 @@
 		"phpmd/phpmd": "~2.3"
 	},
 	"autoload": {
-		"files" : [
-			"Purtle.php"
-		],
 		"psr-4": {
 			"Wikimedia\\Purtle\\": "src/",
 			"Wikimedia\\Purtle\\Tests\\": "tests/phpunit/"
