@@ -110,8 +110,7 @@ abstract class RdfWriterBase implements RdfWriter {
 		}
 
 		$this->role = $role;
-
-		$this->labeler = $labeler?: new BNodeLabeler();
+		$this->labeler = $labeler ?: new BNodeLabeler();
 
 		$this->registerShorthand( 'a', 'rdf', 'type' );
 

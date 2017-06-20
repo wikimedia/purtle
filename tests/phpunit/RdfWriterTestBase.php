@@ -205,7 +205,6 @@ abstract class RdfWriterTestBase extends PHPUnit_Framework_TestCase {
 
 		$rdf = $writer->drain();
 		$this->assertOutputLines( 'Resources', $rdf );
-
 	}
 
 	public function testTexts() {

@@ -2,6 +2,7 @@
 <ruleset name="Purtle">
     <!-- See https://github.com/wikimedia/mediawiki-tools-codesniffer/blob/master/MediaWiki/ruleset.xml -->
     <rule ref="vendor/mediawiki/mediawiki-codesniffer/MediaWiki">
+        <exclude name="MediaWiki.Commenting.FunctionComment" />
         <exclude name="MediaWiki.WhiteSpace.SpaceBeforeSingleLineComment" />
     </rule>
 
@@ -17,7 +18,15 @@
 
     <rule ref="Generic.PHP.CharacterBeforePHPOpeningTag" />
 
+    <rule ref="MediaWiki.NamingConventions.LowerCamelFunctionsName.FunctionName">
+        <!-- Exclude test methods like "testGivenInvalidInput_methodThrowsException". -->
+        <exclude-pattern>tests/phpunit/*Test*\.php</exclude-pattern>
+    </rule>
+
     <rule ref="PSR1" />
+    <rule ref="PSR1.Files.SideEffects.FoundWithSymbols">
+        <exclude-pattern>Purtle\.php</exclude-pattern>
+    </rule>
     <rule ref="PSR1.Methods.CamelCapsMethodName.NotCamelCaps">
         <!-- Exclude test methods like "testGivenInvalidInput_methodThrowsException". -->
         <exclude-pattern>tests/phpunit/*Test*\.php</exclude-pattern>

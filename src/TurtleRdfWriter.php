@@ -43,7 +43,7 @@ class TurtleRdfWriter extends N3RdfWriterBase {
 		$this->transitionTable[self::STATE_DOCUMENT][self::STATE_SUBJECT] = "\n";
 		$this->transitionTable[self::STATE_SUBJECT][self::STATE_PREDICATE] = ' ';
 		$this->transitionTable[self::STATE_PREDICATE][self::STATE_OBJECT] = ' ';
-		$this->transitionTable[self::STATE_START][self::STATE_DOCUMENT] = function() {
+		$this->transitionTable[self::STATE_START][self::STATE_DOCUMENT] = function () {
 			$this->beginDocument();
 		};
 	}

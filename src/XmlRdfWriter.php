@@ -15,16 +15,16 @@ class XmlRdfWriter extends RdfWriterBase {
 	public function __construct( $role = parent::DOCUMENT_ROLE, BNodeLabeler $labeler = null ) {
 		parent::__construct( $role, $labeler );
 
-		$this->transitionTable[self::STATE_START][self::STATE_DOCUMENT] = function() {
+		$this->transitionTable[self::STATE_START][self::STATE_DOCUMENT] = function () {
 			$this->beginDocument();
 		};
-		$this->transitionTable[self::STATE_DOCUMENT][self::STATE_FINISH] = function() {
+		$this->transitionTable[self::STATE_DOCUMENT][self::STATE_FINISH] = function () {
 			$this->finishDocument();
 		};
-		$this->transitionTable[self::STATE_OBJECT][self::STATE_DOCUMENT] = function() {
+		$this->transitionTable[self::STATE_OBJECT][self::STATE_DOCUMENT] = function () {
 			$this->finishSubject();
 		};
-		$this->transitionTable[self::STATE_OBJECT][self::STATE_SUBJECT] = function() {
+		$this->transitionTable[self::STATE_OBJECT][self::STATE_SUBJECT] = function () {
 			$this->finishSubject();
 		};
 	}
@@ -118,7 +118,7 @@ class XmlRdfWriter extends RdfWriterBase {
 		$this->write( "<?xml version=\"1.0\"?>\n" );
 
 		// define a callback for generating namespace attributes
-		$namespaceAttrCallback = function() {
+		$namespaceAttrCallback = function () {
 			$attr = '';
 
 			$namespaces = $this->getPrefixes();

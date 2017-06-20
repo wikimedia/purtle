@@ -24,10 +24,10 @@
 		"irc": "irc://irc.freenode.net/wikimedia-dev"
 	},
 	"require": {
-		"php": ">=5.5.0"
+		"php": ">=5.5.9"
 	},
 	"require-dev": {
-		"mediawiki/mediawiki-codesniffer": "0.7.2",
+		"mediawiki/mediawiki-codesniffer": "0.9.0",
 		"ockcyp/covers-validator": "~0.4.0",
 		"phpunit/phpunit": "4.8.24",
 		"phpmd/phpmd": "~2.3"
@@ -45,23 +45,23 @@
 	},
 	"scripts": {
 		"test": [
-			"composer validate --no-interaction",
+			"@validate --no-interaction",
 			"phpunit",
-			"vendor/bin/covers-validator"
+			"covers-validator"
 		],
 		"cs": [
-			"composer phpcs",
-			"composer phpmd"
+			"@phpcs",
+			"@phpmd"
 		],
 		"ci": [
-			"composer test",
-			"composer cs"
+			"@test",
+			"@cs"
 		],
 		"phpcs": [
-			"vendor/bin/phpcs src/* tests/* --standard=phpcs.xml --extensions=php -sp"
+			"phpcs -p -s"
 		],
 		"phpmd": [
-			"vendor/bin/phpmd src/ text phpmd.xml"
+			"phpmd src/ text phpmd.xml"
 		]
 	}
 }
