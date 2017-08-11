@@ -10,3 +10,4 @@
 	<rdf:Description rdf:about="http://www.example.org/terms/Bear">
 		<exterms:says>Bear says: Превед!</exterms:says>
 	</rdf:Description>
+</rdf:RDF>

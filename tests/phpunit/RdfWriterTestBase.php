@@ -243,7 +243,7 @@ abstract class RdfWriterTestBase extends PHPUnit_Framework_TestCase {
 	}
 
 	public function testEricMiller() {
-		// exampel taken from http://www.w3.org/2007/02/turtle/primer/
+		// example taken from http://www.w3.org/2007/02/turtle/primer/
 
 		$writer = $this->newWriter();
 
@@ -262,7 +262,7 @@ abstract class RdfWriterTestBase extends PHPUnit_Framework_TestCase {
 	}
 
 	public function testLabeledBlankNode() {
-		// exampel taken from http://www.w3.org/2007/02/turtle/primer/
+		// example taken from http://www.w3.org/2007/02/turtle/primer/
 
 		$writer = $this->newWriter();
 
@@ -284,7 +284,7 @@ abstract class RdfWriterTestBase extends PHPUnit_Framework_TestCase {
 	}
 
 	public function testNumberedBlankNodes() {
-		// exampel taken from http://www.w3.org/2007/02/turtle/primer/
+		// example taken from http://www.w3.org/2007/02/turtle/primer/
 
 		$writer = $this->newWriter();
 
@@ -319,6 +319,7 @@ abstract class RdfWriterTestBase extends PHPUnit_Framework_TestCase {
 			->text( "Cow says:\n\r 'Moo! \\Moo!'" );
 		$writer->about( 'exterms', 'Bear' )->say( 'exterms', 'says' )
 			->text( 'Bear says: Превед!' );
+		$writer->finish();
 
 		$rdf = $writer->drain();
 		$this->assertOutputLines( 'TextWithSpecialChars', $rdf );
