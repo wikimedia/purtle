@@ -600,7 +600,7 @@ abstract class RdfWriterBase implements RdfWriter {
 	 * @note: $typeBase and $typeLocal are given as passed to value() and processed by expandType().
 	 *
 	 * @param string $value the value encoded as a string
-	 * @param string $typeBase
+	 * @param string|null $typeBase
 	 * @param string|null $typeLocal
 	 */
 	abstract protected function writeValue( $value, $typeBase, $typeLocal = null );
@@ -639,7 +639,7 @@ abstract class RdfWriterBase implements RdfWriter {
 	 * Perform any expansion (shorthand to qname, qname to IRI) desired
 	 * for type identifiers.
 	 *
-	 * @param string &$base
+	 * @param string|null &$base
 	 * @param string|null &$local
 	 */
 	protected function expandType( &$base, &$local ) {

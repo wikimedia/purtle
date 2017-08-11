@@ -23,6 +23,11 @@ class N3Quoter {
 		$this->escaper = $escapeUnicode ? new UnicodeEscaper() : null;
 	}
 
+	/**
+	 * @param string $iri
+	 *
+	 * @return string
+	 */
 	public function escapeIRI( $iri ) {
 		//FIXME: apply unicode escaping?!
 		return strtr( $iri, [
@@ -39,6 +44,11 @@ class N3Quoter {
 		] );
 	}
 
+	/**
+	 * @param string $s
+	 *
+	 * @return string
+	 */
 	public function escapeLiteral( $s ) {
 		// String escapes. Note that the N3 spec is more restrictive than the Turtle and TR
 		// specifications, see <https://www.w3.org/TeamSubmission/n3/#escaping>

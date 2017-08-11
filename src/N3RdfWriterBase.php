@@ -15,6 +15,11 @@ abstract class N3RdfWriterBase extends RdfWriterBase {
 	 */
 	protected $quoter;
 
+	/**
+	 * @param string $role
+	 * @param BNodeLabeler|null $labeler
+	 * @param N3Quoter|null $quoter
+	 */
 	public function __construct(
 		$role = parent::DOCUMENT_ROLE,
 		BNodeLabeler $labeler = null,
@@ -57,7 +62,12 @@ abstract class N3RdfWriterBase extends RdfWriterBase {
 		}
 	}
 
-	protected function writeValue( $value, $typeBase = null, $typeLocal = null ) {
+	/**
+	 * @param string $value
+	 * @param string|null $typeBase
+	 * @param string|null $typeLocal
+	 */
+	protected function writeValue( $value, $typeBase, $typeLocal = null ) {
 		$value = $this->quoter->escapeLiteral( $value );
 		$this->write( '"' . $value. '"' );
 

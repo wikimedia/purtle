@@ -8,6 +8,11 @@ namespace Wikimedia\Purtle;
  */
 class NTriplesRdfWriter extends N3RdfWriterBase {
 
+	/**
+	 * @param string $role
+	 * @param BNodeLabeler|null $labeler
+	 * @param N3Quoter|null $quoter
+	 */
 	public function __construct(
 		$role = parent::DOCUMENT_ROLE,
 		BNodeLabeler $labeler = null,
@@ -73,7 +78,12 @@ class NTriplesRdfWriter extends N3RdfWriterBase {
 		parent::writeText( $text, $language );
 	}
 
-	protected function writeValue( $value, $typeBase = null, $typeLocal = null ) {
+	/**
+	 * @param string $value
+	 * @param string|null $typeBase
+	 * @param string|null $typeLocal
+	 */
+	protected function writeValue( $value, $typeBase, $typeLocal = null ) {
 		$this->writeSubjectAndObject();
 		$this->write( ' ' );
 
