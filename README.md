@@ -1,14 +1,15 @@
 # Purtle
 
 **Purtle** is a fast, lightweight RDF generator. It provides a "fluent" interface for
-generating RDF output in Turtle, XML/RDF or N-Triples. The fluent interface allows the
+generating RDF output in Turtle, JSON-LD, XML/RDF or N-Triples. The fluent interface allows the
 resulting PHP code to be structured just like Turtle notation for RDF, hence the name: "Purtle"
 is a contraction of "PHP Turtle".
 
-The three concrete classes implementing the common `RdfWriter` interface are:
+The concrete classes implementing the common `RdfWriter` interface are:
 * `TurtleRdfWriter` outputs Turtle
 * `XmlRdfWriter` outputs XML/RDF
 * `NTriplesRdfWriter` outputs N-Triples
+* `JsonLdRdfWriter` outputs JSON-LD
 
 The PHP code would look something like this:
 

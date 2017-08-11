@@ -5,7 +5,8 @@
 	"keywords": [
 		"RDF",
 		"Serializer",
-		"Turtle"
+		"Turtle",
+		"JSON-LD"
 	],
 	"homepage": "https://mediawiki.org/wiki/Purtle",
 	"license": "GPL-2.0+",
@@ -18,6 +19,9 @@
 		},
 		{
 			"name": "Thiemo Mättig"
+		},
+		{
+			"name": "C. Scott Ananian"
 		}
 	],
 	"support": {

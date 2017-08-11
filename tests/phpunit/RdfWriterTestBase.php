@@ -22,10 +22,20 @@ abstract class RdfWriterTestBase extends PHPUnit_Framework_TestCase {
 	 */
 	abstract protected function newWriter();
 
+	/**
+	 * Returns true iff lines are independent in this writer format, and
+	 * so lines should be sorted before comparison with expected in
+	 * assertNTriplesEquals().
+	 * @return bool
+	 */
+	protected function sortLines() {
+		return false;
+	}
+
 	public function testGetMimeType() {
 		$mimeType = $this->newWriter()->getMimeType();
 		$this->assertInternalType( 'string', $mimeType );
-		$this->assertRegExp( '/^\w+\/[\w-]+(\+xml)?(; charset=UTF-8)?$/', $mimeType );
+		$this->assertRegExp( '/^\w+\/[\w-]+(\+(xml|json))?(; charset=UTF-8)?$/', $mimeType );
 	}
 
 	public function testTriples() {
@@ -325,6 +335,26 @@ abstract class RdfWriterTestBase extends PHPUnit_Framework_TestCase {
 		$this->assertOutputLines( 'TextWithSpecialChars', $rdf );
 	}
 
+	public function testDumpHeader() {
+		$writer = $this->newWriter();
+		$writer->prefix( 'wikibase', 'http://wikiba.se/ontology-beta#' );
+		$writer->prefix( 'schema', 'http://schema.org/' );
+		$writer->prefix( 'owl', 'http://www.w3.org/2002/07/owl#' );
+		$writer->prefix( 'cc', 'http://creativecommons.org/ns#' );
+		$writer->start();
+		$writer->about( 'wikibase', 'Dump' )
+			   ->a( 'schema', "Dataset" )
+			   ->a( 'owl', 'Ontology' )
+			   ->say( 'cc', 'license' )->is( 'http://creativecommons.org/publicdomain/zero/1.0/' )
+			   ->say( 'schema', 'softwareVersion' )->value( '0.1.0' )
+			   ->say( 'schema', 'dateModified' )->value( '2017-09-19T22:53:13-04:00', 'xsd', 'dateTime' )
+			   ->say( 'owl', 'imports' )->is( 'http://wikiba.se/ontology-1.0.owl' );
+		$writer->finish();
+
+		$rdf = $writer->drain();
+		$this->assertOutputLines( 'DumpHeader', $rdf );
+	}
+
 	/**
 	 * @param string $datasetName
 	 * @param string[]|string $actual
@@ -350,7 +380,9 @@ abstract class RdfWriterTestBase extends PHPUnit_Framework_TestCase {
 			$nTriples = explode( "\n", rtrim( $nTriples, "\n" ) );
 		}
 
-		sort( $nTriples );
+		if ( $this->sortLines() ) {
+			sort( $nTriples );
+		}
 
 		return $nTriples;
 	}
@@ -364,16 +396,20 @@ abstract class RdfWriterTestBase extends PHPUnit_Framework_TestCase {
 		$expected = $this->normalizeNTriples( $expected );
 		$actual = $this->normalizeNTriples( $actual );
 
-		// Comparing $expected and $actual directly would show triples that are present in both but
-		// shifted in position. That makes the output hard to read. Calculating the $missing and
-		// $extra sets helps.
-		$extra = array_diff( $actual, $expected );
-		$missing = array_diff( $expected, $actual );
+		if ( $this->sortLines() ) {
+			// Comparing $expected and $actual directly would show triples that are present in both but
+			// shifted in position. That makes the output hard to read. Calculating the $missing and
+			// $extra sets helps.
+			$extra = array_diff( $actual, $expected );
+			$missing = array_diff( $expected, $actual );
 
-		// Cute: $missing and $extra can be equal only if they are empty. Comparing them here
-		// directly looks a bit odd in code, but produces meaningful output, especially if the input
-		// was sorted.
-		$this->assertEquals( $missing, $extra, $message );
+			// Cute: $missing and $extra can be equal only if they are empty. Comparing them here
+			// directly looks a bit odd in code, but produces meaningful output, especially if the input
+			// was sorted.
+			$this->assertEquals( $missing, $extra, $message );
+		} else {
+			$this->assertEquals( $expected, $actual, $message );
+		}
 	}
 
 	// FIXME: test non-ascii literals!

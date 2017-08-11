@@ -1,0 +1,18 @@
+{
+    "@graph": [
+        {
+            "@id": "acme:Bongos",
+            "acme:stock": [
+                5,
+                7
+            ]
+        },
+        {
+            "@id": "acme:Tablas",
+            "acme:stock": 6
+        }
+    ],
+    "@context": {
+        "acme": "http://acme.test/"
+    }
+}

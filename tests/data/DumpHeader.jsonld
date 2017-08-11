@@ -1,0 +1,25 @@
+{
+    "@id": "wikibase:Dump",
+    "@type": [
+        "schema:Dataset",
+        "owl:Ontology"
+    ],
+    "cc:license": {
+        "@id": "http://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    "schema:softwareVersion": "0.1.0",
+    "schema:dateModified": {
+        "@type": "xsd:dateTime",
+        "@value": "2017-09-19T22:53:13-04:00"
+    },
+    "owl:imports": {
+        "@id": "http://wikiba.se/ontology-1.0.owl"
+    },
+    "@context": {
+        "wikibase": "http://wikiba.se/ontology-beta#",
+        "schema": "http://schema.org/",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "cc": "http://creativecommons.org/ns#",
+        "xsd": "http://www.w3.org/2001/XMLSchema#"
+    }
+}

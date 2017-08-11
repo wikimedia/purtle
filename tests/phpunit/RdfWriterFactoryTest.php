@@ -15,6 +15,7 @@ use Wikimedia\Purtle\RdfWriterFactory;
  * @uses Wikimedia\Purtle\N3RdfWriterBase
  * @uses Wikimedia\Purtle\NTriplesRdfWriter
  * @uses Wikimedia\Purtle\RdfWriterBase
+ * @uses Wikimedia\Purtle\JsonLdRdfWriter
  * @uses Wikimedia\Purtle\TurtleRdfWriter
  * @uses Wikimedia\Purtle\XmlRdfWriter
  *
@@ -93,6 +94,12 @@ class RdfWriterFactoryTest extends PHPUnit_Framework_TestCase {
 			[ 'application/rdf+xml', 'rdfxml', 'rdf', 'application/rdf+xml' ],
 			[ 'application/xml', 'rdfxml', 'rdf', 'application/rdf+xml' ],
 			[ 'text/xml', 'rdfxml', 'rdf', 'application/rdf+xml' ],
+
+			[ 'json', 'jsonld', 'jsonld', 'application/ld+json' ],
+			[ 'jsonld', 'jsonld', 'jsonld', 'application/ld+json' ],
+			[ 'application/ld+json', 'jsonld', 'jsonld', 'application/ld+json' ],
+			[ 'application/json', 'jsonld', 'jsonld', 'application/ld+json' ],
+			[ 'application/json', 'jsonld', 'jsonld', 'application/json' ],
 		];
 	}
 

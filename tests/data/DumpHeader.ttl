@@ -1,0 +1,13 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix wikibase: <http://wikiba.se/ontology-beta#> .
+@prefix schema: <http://schema.org/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix cc: <http://creativecommons.org/ns#> .
+
+wikibase:Dump a schema:Dataset,
+		owl:Ontology ;
+	cc:license <http://creativecommons.org/publicdomain/zero/1.0/> ;
+	schema:softwareVersion "0.1.0" ;
+	schema:dateModified "2017-09-19T22:53:13-04:00"^^xsd:dateTime ;
+	owl:imports <http://wikiba.se/ontology-1.0.owl> .

@@ -1,0 +1,19 @@
+{
+    "@graph": [
+        {
+            "@id": "exterms:Duck",
+            "exterms:says": "Duck says: \"Quack!\""
+        },
+        {
+            "@id": "exterms:Cow",
+            "exterms:says": "Cow says:\n\r 'Moo! \\Moo!'"
+        },
+        {
+            "@id": "exterms:Bear",
+            "exterms:says": "Bear says: \u041f\u0440\u0435\u0432\u0435\u0434!"
+        }
+    ],
+    "@context": {
+        "exterms": "http://www.example.org/terms/"
+    }
+}

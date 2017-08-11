@@ -1,0 +1,49 @@
+{
+    "@id": "http://foobar.test/Bananas",
+    "acme:multi": [
+        "A",
+        "B",
+        "C"
+    ],
+    "acme:type": [
+        {
+            "@type": "acme:thing",
+            "@value": "foo"
+        },
+        -5,
+        {
+            "@type": "xsd:decimal",
+            "@value": "-5"
+        },
+        {
+            "@type": "xsd:double",
+            "@value": "-5"
+        },
+        true,
+        false
+    ],
+    "acme:autotype": [
+        -5,
+        3.14,
+        true,
+        false
+    ],
+    "acme:no-autotype": [
+        {
+            "@type": "xsd:decimal",
+            "@value": "-5"
+        },
+        "3.14",
+        "1",
+        ""
+    ],
+    "acme:shorthand": "foo",
+    "acme:typed-shorthand": {
+        "@type": "acme:thing",
+        "@value": "foo"
+    },
+    "@context": {
+        "acme": "http://acme.test/",
+        "xsd": "http://www.w3.org/2001/XMLSchema#"
+    }
+}

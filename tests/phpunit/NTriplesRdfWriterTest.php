@@ -26,6 +26,13 @@ class NTriplesRdfWriterTest extends RdfWriterTestBase {
 	}
 
 	/**
+	 * @return bool
+	 */
+	protected function sortLines() {
+		return true;
+	}
+
+	/**
 	 * @return RdfWriter
 	 */
 	protected function newWriter() {

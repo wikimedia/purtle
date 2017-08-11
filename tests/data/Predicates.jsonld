@@ -1,0 +1,19 @@
+{
+    "@graph": [
+        {
+            "@id": "http://foobar.test/Bananas",
+            "@type": "http://foobar.test/Fruit",
+            "http://acme.test/name": [
+                "Banana",
+                {
+                    "@language": "de",
+                    "@value": "Banane"
+                }
+            ]
+        },
+        {
+            "@id": "http://foobar.test/Apples",
+            "http://acme.test/name": "Apple"
+        }
+    ]
+}

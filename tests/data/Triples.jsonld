@@ -1,0 +1,20 @@
+{
+    "@graph": [
+        {
+            "@id": "http://foobar.test/Bananas",
+            "@type": "http://foobar.test/Fruit"
+        },
+        {
+            "@id": "acme:Nuts",
+            "acme:weight": {
+                "@type": "xsd:decimal",
+                "@value": "5.5"
+            },
+            "acme:color": "brown"
+        }
+    ],
+    "@context": {
+        "acme": "http://acme.test/",
+        "xsd": "http://www.w3.org/2001/XMLSchema#"
+    }
+}

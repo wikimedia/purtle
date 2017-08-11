@@ -1,0 +1,21 @@
+{
+    "@id": "acme:Bongos",
+    "acme:sounds": [
+        {
+            "@language": "de",
+            "@value": "Bom"
+        },
+        {
+            "@language": "en",
+            "@value": "Bam"
+        },
+        {
+            "@language": "es-419",
+            "@value": "Como estas"
+        },
+        "What?"
+    ],
+    "@context": {
+        "acme": "http://acme.test/"
+    }
+}

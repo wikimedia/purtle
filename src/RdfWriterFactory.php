@@ -20,7 +20,7 @@ class RdfWriterFactory {
 	 * @return string[]
 	 */
 	public function getSupportedFormats() {
-		return [ 'n3', 'turtle', 'ntriples', 'rdfxml' ];
+		return [ 'n3', 'turtle', 'ntriples', 'rdfxml', 'jsonld' ];
 	}
 
 	/**
@@ -50,6 +50,9 @@ class RdfWriterFactory {
 			case 'rdfxml':
 				return [ 'application/rdf+xml', 'application/xml', 'text/xml' ];
 
+			case 'jsonld':
+				return [ 'application/ld+json', 'application/json' ];
+
 			default:
 				throw new InvalidArgumentException( 'Bad format: ' . $format );
 		}
@@ -77,6 +80,9 @@ class RdfWriterFactory {
 			case 'rdfxml':
 				return 'rdf';
 
+			case 'jsonld':
+				return 'jsonld';
+
 			default:
 				throw new InvalidArgumentException( 'Bad format: ' . $format );
 		}
@@ -103,6 +109,9 @@ class RdfWriterFactory {
 
 			case 'rdfxml':
 				return new XmlRdfWriter();
+
+			case 'jsonld':
+				return new JsonLdRdfWriter();
 
 			default:
 				throw new InvalidArgumentException( 'Bad format: ' . $format );
@@ -148,6 +157,12 @@ class RdfWriterFactory {
 			case 'application/xml':
 			case 'text/xml':
 				return 'rdfxml';
+
+			case 'json':
+			case 'jsonld':
+			case 'application/ld+json':
+			case 'application/json':
+				return 'jsonld';
 
 			default:
 				return false;

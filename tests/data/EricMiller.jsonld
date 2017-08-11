@@ -1,0 +1,12 @@
+{
+    "@id": "http://www.w3.org/People/EM/contact#me",
+    "@type": "contact:Person",
+    "contact:fullName": "Eric Miller",
+    "contact:mailbox": {
+        "@id": "mailto:em@w3.org"
+    },
+    "contact:personalTitle": "Dr.",
+    "@context": {
+        "contact": "http://www.w3.org/2000/10/swap/pim/contact#"
+    }
+}

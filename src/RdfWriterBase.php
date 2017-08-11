@@ -52,7 +52,7 @@ abstract class RdfWriterBase implements RdfWriter {
 	/**
 	 * @var string[] a map of prefixes to base IRIs
 	 */
-	private $prefixes = [];
+	protected $prefixes = [];
 
 	/**
 	 * @var array pair to store the current subject.

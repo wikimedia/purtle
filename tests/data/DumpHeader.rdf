@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#" xmlns:wikibase="http://wikiba.se/ontology-beta#" xmlns:schema="http://schema.org/" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:cc="http://creativecommons.org/ns#">
+	<rdf:Description rdf:about="http://wikiba.se/ontology-beta#Dump">
+		<rdf:type rdf:resource="http://schema.org/Dataset"/>
+		<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
+		<cc:license rdf:resource="http://creativecommons.org/publicdomain/zero/1.0/"/>
+		<schema:softwareVersion>0.1.0</schema:softwareVersion>
+		<schema:dateModified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2017-09-19T22:53:13-04:00</schema:dateModified>
+		<owl:imports rdf:resource="http://wikiba.se/ontology-1.0.owl"/>
+	</rdf:Description>
+</rdf:RDF>
