@@ -35,7 +35,7 @@ namespace Wikimedia\Purtle;
  */
 interface RdfWriter {
 
-	//TODO: split: generic RdfWriter class with shorthands, use RdfFormatters for output
+	// TODO: split: generic RdfWriter class with shorthands, use RdfFormatters for output
 
 	/**
 	 * Returns the local name of a blank node, for use with the "_" prefix.

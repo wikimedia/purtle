@@ -32,10 +32,10 @@ class RdfWriterFactory {
 	 * @return string[]
 	 */
 	public function getMimeTypes( $format ) {
-		//NOTE: Maintaining mime types and file extensions in the RdfWriter implementations
-		//      is tempting, but means we have to load all these classes to find the right
-		//      one for a requested name. Better avoid that overhead when serving lots of
-		//      HTTP requests.
+		// NOTE: Maintaining mime types and file extensions in the RdfWriter implementations
+		// is tempting, but means we have to load all these classes to find the right
+		// one for a requested name. Better avoid that overhead when serving lots of
+		// HTTP requests.
 
 		switch ( strtolower( $format ) ) {
 			case 'n3':

@@ -29,7 +29,7 @@ class N3Quoter {
 	 * @return string
 	 */
 	public function escapeIRI( $iri ) {
-		//FIXME: apply unicode escaping?!
+		// FIXME: apply unicode escaping?!
 		return strtr( $iri, [
 				' ' => '%20',
 				'"' => '%22',

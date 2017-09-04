@@ -20,10 +20,10 @@ class NTriplesRdfWriter extends N3RdfWriterBase {
 	) {
 		parent::__construct( $role, $labeler, $quoter );
 
-		//NOTE: The RDF 1.1 spec of N-Triples allows full UTF-8, so escaping would not be required.
-		//      However, as of 2015, many consumers of N-Triples still expect non-ASCII characters
-		//      to be escaped.
-		//NOTE: if this is changed, getMimeType must be changed accordingly.
+		// NOTE: The RDF 1.1 spec of N-Triples allows full UTF-8, so escaping would not be required.
+		// However, as of 2015, many consumers of N-Triples still expect non-ASCII characters
+		// to be escaped.
+		// NOTE: if this is changed, getMimeType must be changed accordingly.
 		$this->quoter->setEscapeUnicode( true );
 
 		$this->transitionTable[self::STATE_OBJECT] = [
@@ -106,8 +106,8 @@ class NTriplesRdfWriter extends N3RdfWriterBase {
 	 * @return string a MIME type
 	 */
 	public function getMimeType() {
-		//NOTE: Add charset=UTF-8 if and when the constructor configures $this->quoter
-		//      to write utf-8.
+		// NOTE: Add charset=UTF-8 if and when the constructor configures $this->quoter
+		// to write utf-8.
 		return 'application/n-triples';
 	}
 

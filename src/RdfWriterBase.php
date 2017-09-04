@@ -258,7 +258,7 @@ abstract class RdfWriterBase implements RdfWriter {
 	protected function expandQName( &$base, &$local ) {
 		if ( $local !== null && $base !== '_' ) {
 			if ( isset( $this->prefixes[$base] ) ) {
-				$base = $this->prefixes[$base] . $local; //XXX: can we avoid this concat?
+				$base = $this->prefixes[$base] . $local; // XXX: can we avoid this concat?
 				$local = null;
 			} else {
 				throw new LogicException( 'Unknown prefix: ' . $base );

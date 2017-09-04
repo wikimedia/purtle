@@ -376,7 +376,7 @@ abstract class RdfWriterTestBase extends PHPUnit_Framework_TestCase {
 		$this->assertEquals( $missing, $extra, $message );
 	}
 
-	//FIXME: test non-ascii literals!
-	//FIXME: test uerl-encoding
-	//FIXME: test IRIs!
+	// FIXME: test non-ascii literals!
+	// FIXME: test uerl-encoding
+	// FIXME: test IRIs!
 }
