@@ -44,7 +44,7 @@ class NTriplesRdfWriter extends N3RdfWriterBase {
 
 	protected function expandPredicate( &$base, &$local ) {
 		$this->expandShorthand( $base, $local ); // e.g. ( 'a', null ) => ( 'rdf', 'type' )
-		$this->expandQName( $base, $local ); // e.g. ( 'acme', 'foo' ) => ( 'http://amce.test/foo', null )
+		$this->expandQName( $base, $local ); // e.g. ( 'acme', 'foo' ) => ( 'http://acme.test/foo', null )
 	}
 
 	protected function writePredicate( $base, $local = null ) {
