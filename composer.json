@@ -45,7 +45,7 @@
 	},
 	"scripts": {
 		"test": [
-			"@validate --no-interaction",
+			"composer validate --no-interaction",
 			"phpunit",
 			"covers-validator"
 		],
