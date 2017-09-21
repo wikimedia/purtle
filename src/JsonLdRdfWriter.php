@@ -14,18 +14,24 @@ use LogicException;
 class JsonLdRdfWriter extends RdfWriterBase {
 
 	/**
-	 * The JSON-LD "@context" object, which maps terms to IRIs.
-	 * This object is shared with all sub-writers, and a single
-	 * context is emitted when the writer is finalized.
+	 * The JSON-LD "@context", which maps terms to IRIs. This is shared with all sub-writers, and a
+	 * single context is emitted when the writer is finalized.
+	 *
 	 * @see https://www.w3.org/TR/json-ld/#the-context
+	 *
 	 * @var string[]
 	 */
 	protected $context = [];
 
 	/**
-	 * The JSON-LD "@graph" array, which lists all the nodes
-	 * described by this JSON-LD object.
+	 * The JSON-LD "@graph", which lists all the nodes described by this JSON-LD object.
+	 * We apply an optimization eliminating the "@graph" entry if it consists
+	 * of a single node; in that case we will set $this->graph to null in
+	 * #finishJson() to ensure that the deferred callback in #finishDocument()
+	 * doesn't later emit "@graph".
+	 *
 	 * @see https://www.w3.org/TR/json-ld/#named-graphs
+	 *
 	 * @var array[]|null
 	 */
 	private $graph = [];
@@ -34,7 +40,9 @@ class JsonLdRdfWriter extends RdfWriterBase {
 	 * A collection of predicates about a specific subject.  The
 	 * subject is identified by the "@id" key in this array; the other
 	 * keys identify JSON-LD properties.
+	 *
 	 * @see https://www.w3.org/TR/json-ld/#dfn-edge
+	 *
 	 * @var array
 	 */
 	private $predicates = [];
@@ -42,13 +50,16 @@ class JsonLdRdfWriter extends RdfWriterBase {
 	/**
 	 * A sequence of zero or more IRIs, nodes, or values, which are the
 	 * destination targets of the current predicates.
+	 *
 	 * @see https://www.w3.org/TR/json-ld/#dfn-list
+	 *
 	 * @var array
 	 */
 	private $values = [];
 
 	/**
 	 * True iff we have written the opening of the "@graph" field.
+	 *
 	 * @var bool
 	 */
 	private $wroteGraph = false;
@@ -57,6 +68,7 @@ class JsonLdRdfWriter extends RdfWriterBase {
 	 * JSON-LD objects describing a single node can omit the "@graph" field;
 	 * this variable remains false only so long as we can guarantee that
 	 * only a single node has been described.
+	 *
 	 * @var bool
 	 */
 	private $disableGraphOpt = false;
@@ -96,9 +108,12 @@ class JsonLdRdfWriter extends RdfWriterBase {
 	public function encode( $val, $indent ) {
 		$str = json_encode( $val, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES );
 		// Strip outermost open/close braces/brackets
-		$str = preg_replace( '/(^[\[{]\n?)|(\n?[}\]]$)/', '', $str );
-		// add extra indentation
-		$str = preg_replace( '/^/m', str_repeat( "    ", $indent ), $str );
+		$str = preg_replace( '/^[[{]\n?|\n?[}\]]$/', '', $str );
+
+		if ( $indent > 0 ) {
+			// add extra indentation
+			$str = preg_replace( '/^/m', str_repeat( '    ', $indent ), $str );
+		}
 
 		return $str;
 	}
@@ -178,6 +193,7 @@ class JsonLdRdfWriter extends RdfWriterBase {
 				$this->write( "\n    ]" );
 			}
 		}
+
 		if ( count( $this->context ) ) {
 			// Write @context field.
 			$this->write( ",\n" );
@@ -185,8 +201,8 @@ class JsonLdRdfWriter extends RdfWriterBase {
 				"@context" => $this->context
 			], 0 ) );
 		}
-		$this->write( "\n" );
-		$this->write( "}" );
+
+		$this->write( "\n}" );
 	}
 
 	protected function finishDocument() {
@@ -250,10 +266,7 @@ class JsonLdRdfWriter extends RdfWriterBase {
 	 * @param string|null $language
 	 */
 	protected function writeText( $text, $language = null ) {
-		if (
-			$language === null ||
-			!$this->isValidLanguageCode( $language )
-		) {
+		if ( !$this->isValidLanguageCode( $language ) ) {
 			$this->values[] = $text;
 		} else {
 			$this->values[] = [
@@ -271,23 +284,20 @@ class JsonLdRdfWriter extends RdfWriterBase {
 	public function writeValue( $literal, $typeBase, $typeLocal = null ) {
 		if ( $typeBase === null && $typeLocal === null ) {
 			$this->values[] = $literal;
-		} elseif ( $typeLocal === null ) {
-			throw new InvalidArgumentException( "Got IRI: $typeBase" );
-		} else {
-			$typeIRI = $this->toIRI( $typeBase, $typeLocal );
-			if ( $typeIRI === 'http://www.w3.org/2001/XMLSchema#string' ) {
+			return;
+		}
+
+		switch ( $this->toIRI( $typeBase, $typeLocal ) ) {
+			case 'http://www.w3.org/2001/XMLSchema#string':
 				$this->values[] = strval( $literal );
 				return;
-			}
-			if ( $typeIRI === 'http://www.w3.org/2001/XMLSchema#integer' ) {
+			case 'http://www.w3.org/2001/XMLSchema#integer':
 				$this->values[] = intval( $literal );
 				return;
-			}
-			if ( $typeIRI === 'http://www.w3.org/2001/XMLSchema#boolean' ) {
-				$this->values[] = ( $literal === 'true' );
+			case 'http://www.w3.org/2001/XMLSchema#boolean':
+				$this->values[] = $literal === 'true';
 				return;
-			}
-			if ( $typeIRI === 'http://www.w3.org/2001/XMLSchema#double' ) {
+			case 'http://www.w3.org/2001/XMLSchema#double':
 				$v = doubleval( $literal );
 				// Only "numbers with fractions" are xsd:double.  We need
 				// to verify that the JSON string will contain a decimal
@@ -299,12 +309,12 @@ class JsonLdRdfWriter extends RdfWriterBase {
 					$this->values[] = $v;
 					return;
 				}
-			}
-			$this->values[] = [
-				"@type" => $this->compactify( $typeBase, $typeLocal ),
-				"@value" => strval( $literal )
-			];
 		}
+
+		$this->values[] = [
+			"@type" => $this->compactify( $typeBase, $typeLocal ),
+			"@value" => strval( $literal )
+		];
 	}
 
 	protected function finishPredicate() {
@@ -323,12 +333,9 @@ class JsonLdRdfWriter extends RdfWriterBase {
 			$name = $this->compactify( $base, $local );
 		}
 		if ( isset( $this->predicates[$name] ) ) {
-			$was = $this->predicates[$name];
-			if ( !is_array( $was ) ) {
-				$was = [ $was ];
-			}
-			$this->values = array_merge( $was, $this->values );
+			$this->values = array_merge( (array)$this->predicates[$name], $this->values );
 		}
+
 		$cnt = count( $this->values );
 		if ( $cnt === 0 ) {
 			throw new LogicException( "finishPredicate can't be called without at least one value" );

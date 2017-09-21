@@ -7,9 +7,9 @@ is a contraction of "PHP Turtle".
 
 The concrete classes implementing the common `RdfWriter` interface are:
 * `TurtleRdfWriter` outputs Turtle
+* `JsonLdRdfWriter` outputs JSON-LD
 * `XmlRdfWriter` outputs XML/RDF
 * `NTriplesRdfWriter` outputs N-Triples
-* `JsonLdRdfWriter` outputs JSON-LD
 
 The PHP code would look something like this:
 

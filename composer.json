@@ -3,10 +3,10 @@
 	"type": "library",
 	"description": "Fast streaming RDF serializer",
 	"keywords": [
+		"JSON-LD",
 		"RDF",
 		"Serializer",
-		"Turtle",
-		"JSON-LD"
+		"Turtle"
 	],
 	"homepage": "https://mediawiki.org/wiki/Purtle",
 	"license": "GPL-2.0+",
