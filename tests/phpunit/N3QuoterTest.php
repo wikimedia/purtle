@@ -4,6 +4,7 @@ namespace Wikimedia\Purtle\Tests;
 
 use PHPUnit_Framework_TestCase;
 use Wikimedia\Purtle\N3Quoter;
+use Wikimedia\Purtle\UnicodeEscaper;
 
 /**
  * @covers Wikimedia\Purtle\N3Quoter
@@ -52,8 +53,16 @@ class N3QuoterTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function provideEscapeLiteral() {
+		$shortCircuitedChars = ' !#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ' .
+			'[]^_`abcdefghijklmnopqrstuvwxyz{|}~';
+
 		return [
 			[ 'Hello World', 'Hello World' ],
+			[ 'Hello#World', 'Hello#World' ],
+			[ 'Hello[<f>a+n%cy]World^', 'Hello[<f>a+n%cy]World^' ],
+			[ $shortCircuitedChars, $shortCircuitedChars ],
+			[ $shortCircuitedChars, $shortCircuitedChars, true ],
+			[ 'Hello"World', 'Hello\\"World' ],
 			[ "Hello\nWorld", 'Hello\nWorld' ],
 			[ "Hello\tWorld", 'Hello\tWorld' ],
 			[ 'Hällo Wörld', 'Hällo Wörld', false ],
@@ -70,7 +79,14 @@ class N3QuoterTest extends PHPUnit_Framework_TestCase {
 		$quoter = new N3Quoter();
 		$quoter->setEscapeUnicode( $escapeUnicode );
 
-		$this->assertEquals( $expected, $quoter->escapeLiteral( $literal ) );
+		$actual = $quoter->escapeLiteral( $literal );
+		$this->assertSame( $expected, $actual );
+
+		if ( $escapeUnicode ) {
+			// Make sure unicode escaping was correctly applied:
+			$escaper = new UnicodeEscaper();
+			$this->assertSame( $escaper->escapeString( $expected ), $actual );
+		}
 	}
 
 }

@@ -50,6 +50,12 @@ class N3Quoter {
 	 * @return string
 	 */
 	public function escapeLiteral( $s ) {
+		// Performance: If the entire string is just (a safe subset) of ASCII, let it through.
+		// Ok are space (31), ! (32), # (35) - [ (91) and ] (93) to ~ (126), excludes " (34) and \ (92).
+		if ( preg_match( '/^[ !#-[\]-~]*\z/', $s ) ) {
+			return $s;
+		}
+
 		// String escapes. Note that the N3 spec is more restrictive than the Turtle and TR
 		// specifications, see <https://www.w3.org/TeamSubmission/n3/#escaping>
 		// and <https://www.w3.org/TR/turtle/#string>
