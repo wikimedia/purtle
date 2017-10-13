@@ -6,15 +6,19 @@
         },
         {
             "@id": "acme:Nuts",
-            "acme:weight": {
-                "@type": "xsd:decimal",
-                "@value": "5.5"
-            },
-            "acme:color": "brown"
+            "weight": "5.5",
+            "color": "brown"
         }
     ],
     "@context": {
         "acme": "http://acme.test/",
-        "xsd": "http://www.w3.org/2001/XMLSchema#"
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "weight": {
+            "@id": "acme:weight",
+            "@type": "xsd:decimal"
+        },
+        "color": {
+            "@id": "acme:color"
+        }
     }
 }

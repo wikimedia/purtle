@@ -1,16 +1,15 @@
 {
     "@id": "http://foobar.test/Bananas",
-    "acme:multi": [
+    "multi": [
         "A",
         "B",
         "C"
     ],
-    "acme:type": [
+    "type": [
+        "foo",
         {
-            "@type": "acme:thing",
-            "@value": "foo"
+            "@value": -5
         },
-        -5,
         {
             "@type": "xsd:decimal",
             "@value": "-5"
@@ -19,31 +18,56 @@
             "@type": "xsd:double",
             "@value": "-5"
         },
-        true,
-        false
+        {
+            "@value": true
+        },
+        {
+            "@value": false
+        }
     ],
-    "acme:autotype": [
+    "autotype": [
         -5,
         3.14,
         true,
         false
     ],
-    "acme:no-autotype": [
+    "no-autotype": [
+        "-5",
         {
-            "@type": "xsd:decimal",
-            "@value": "-5"
+            "@value": "3.14"
         },
-        "3.14",
-        "1",
-        ""
+        {
+            "@value": "1"
+        },
+        {
+            "@value": ""
+        }
     ],
-    "acme:shorthand": "foo",
-    "acme:typed-shorthand": {
-        "@type": "acme:thing",
-        "@value": "foo"
-    },
+    "shorthand": "foo",
+    "typed-shorthand": "foo",
     "@context": {
         "acme": "http://acme.test/",
-        "xsd": "http://www.w3.org/2001/XMLSchema#"
+        "multi": {
+            "@id": "acme:multi"
+        },
+        "type": {
+            "@id": "acme:type",
+            "@type": "acme:thing"
+        },
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "autotype": {
+            "@id": "acme:autotype"
+        },
+        "no-autotype": {
+            "@id": "acme:no-autotype",
+            "@type": "xsd:decimal"
+        },
+        "shorthand": {
+            "@id": "acme:shorthand"
+        },
+        "typed-shorthand": {
+            "@id": "acme:typed-shorthand",
+            "@type": "acme:thing"
+        }
     }
 }

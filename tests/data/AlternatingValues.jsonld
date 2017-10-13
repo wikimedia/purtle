@@ -1,33 +1,26 @@
 {
     "@id": "wikibase:Dump",
-    "owl:foo": [
-        {
-            "@id": "owl:A"
-        },
-        {
-            "@id": "owl:B"
-        },
-        {
-            "@id": "owl:C"
-        }
+    "foo": [
+        "owl:A",
+        "owl:B",
+        "owl:C"
     ],
-    "owl:bar": [
-        {
-            "@type": "xsd:decimal",
-            "@value": "5"
-        },
-        {
-            "@type": "xsd:decimal",
-            "@value": "6"
-        },
-        {
-            "@type": "xsd:decimal",
-            "@value": "7"
-        }
+    "bar": [
+        "5",
+        "6",
+        "7"
     ],
     "@context": {
         "wikibase": "http://wikiba.se/ontology-beta#",
         "owl": "http://www.w3.org/2002/07/owl#",
-        "xsd": "http://www.w3.org/2001/XMLSchema#"
+        "foo": {
+            "@id": "owl:foo",
+            "@type": "@id"
+        },
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "bar": {
+            "@id": "owl:bar",
+            "@type": "xsd:decimal"
+        }
     }
 }

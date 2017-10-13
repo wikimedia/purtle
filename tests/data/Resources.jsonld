@@ -1,14 +1,14 @@
 {
     "@id": "acme:Bongos",
-    "acme:sounds": [
-        {
-            "@id": "acme:Bing"
-        },
-        {
-            "@id": "http://foobar.test/sound/Bang"
-        }
+    "sounds": [
+        "acme:Bing",
+        "http://foobar.test/sound/Bang"
     ],
     "@context": {
-        "acme": "http://acme.test/"
+        "acme": "http://acme.test/",
+        "sounds": {
+            "@id": "acme:sounds",
+            "@type": "@id"
+        }
     }
 }

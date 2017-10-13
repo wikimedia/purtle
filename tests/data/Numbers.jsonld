@@ -2,17 +2,20 @@
     "@graph": [
         {
             "@id": "acme:Bongos",
-            "acme:stock": [
+            "stock": [
                 5,
                 7
             ]
         },
         {
             "@id": "acme:Tablas",
-            "acme:stock": 6
+            "stock": 6
         }
     ],
     "@context": {
-        "acme": "http://acme.test/"
+        "acme": "http://acme.test/",
+        "stock": {
+            "@id": "acme:stock"
+        }
     }
 }

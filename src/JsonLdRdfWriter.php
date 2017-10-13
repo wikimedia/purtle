@@ -23,6 +23,16 @@ class JsonLdRdfWriter extends RdfWriterBase {
 	protected $context = [];
 
 	/**
+	 * A set of predicates which rely on the default typing rules for
+	 * JSON-LD; that is, values for the predicate have been emitted which
+	 * would be broken if an explicit "@type" was added to the context
+	 * for the predicate.
+	 *
+	 * @var boolean[]
+	 */
+	protected $defaulted = [];
+
+	/**
 	 * The JSON-LD "@graph", which lists all the nodes described by this JSON-LD object.
 	 * We apply an optimization eliminating the "@graph" entry if it consists
 	 * of a single node; in that case we will set $this->graph to null in
@@ -76,6 +86,12 @@ class JsonLdRdfWriter extends RdfWriterBase {
 	 * The IRI for the RDF `type` property.
 	 */
 	const RDF_TYPE_IRI = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type';
+
+	/**
+	 * The type internally used for "default type", which is a string or
+	 * otherwise default-coerced type.
+	 */
+	const DEFAULT_TYPE = "@purtle@default@";
 
 	/**
 	 * @param string $role
@@ -139,7 +155,13 @@ class JsonLdRdfWriter extends RdfWriterBase {
 					// Empty prefix not supported; use full IRI
 					return $this->prefixes[ $base ] . $local;
 				}
-				$this->context[ $base ] = $this->prefixes[ $base ];
+				if ( !isset( $this->context[ $base ] ) ) {
+					$this->context[ $base ] = $this->prefixes[ $base ];
+				}
+				if ( $this->context[ $base ] !== $this->prefixes[ $base ] ) {
+					// Context name conflict; use full IRI
+					return $this->prefixes[ $base ] . $local;
+				}
 			}
 			return $base . ':' . $local;
 		}
@@ -161,6 +183,32 @@ class JsonLdRdfWriter extends RdfWriterBase {
 			throw new LogicException( 'Unknown prefix: ' . $base );
 		}
 		return $base;
+	}
+
+	/**
+	 * Return a appropriate term for the current predicate value.
+	 */
+	private function getCurrentTerm() {
+		list( $base, $local ) = $this->currentPredicate;
+		$predIRI = $this->toIRI( $base, $local );
+		if ( $predIRI === self::RDF_TYPE_IRI ) {
+			return $predIRI;
+		}
+		$this->expandShorthand( $base, $local );
+		if ( $local === null ) {
+			return $base;
+		} elseif ( $base !== '_' && !isset( $this->prefixes[ $local ] ) ) {
+			// Prefixes get priority over field names in @context
+			$pred = $this->compactify( $base, $local );
+			if ( !isset( $this->context[ $local ] ) ) {
+				$this->context[ $local ] = [ "@id" => $pred ];
+			}
+			if ( $this->context[ $local ][ "@id" ] === $pred ) {
+				return $local;
+			}
+			return $pred;
+		}
+		return $this->compactify( $base, $local );
 	}
 
 	/**
@@ -255,9 +303,11 @@ class JsonLdRdfWriter extends RdfWriterBase {
 	 * @param string|null $local
 	 */
 	protected function writeResource( $base, $local = null ) {
-		$this->values[] = [
-			"@id" => $this->compactify( $base, $local )
-		];
+		$pred = $this->getCurrentTerm();
+		$value = $this->compactify( $base, $local );
+		$this->addTypedValue( "@id", $value, [
+			"@id" => $value
+		], ( $pred === self::RDF_TYPE_IRI ) );
 	}
 
 	/**
@@ -266,12 +316,13 @@ class JsonLdRdfWriter extends RdfWriterBase {
 	 */
 	protected function writeText( $text, $language = null ) {
 		if ( !$this->isValidLanguageCode( $language ) ) {
-			$this->values[] = $text;
+			$this->addTypedValue( self::DEFAULT_TYPE, $text );
 		} else {
-			$this->values[] = [
+			$expanded = [
 				"@language" => $language,
 				"@value" => $text
 			];
+			$this->addTypedValue( self::DEFAULT_TYPE, $expanded, $expanded );
 		}
 	}
 
@@ -282,19 +333,19 @@ class JsonLdRdfWriter extends RdfWriterBase {
 	 */
 	public function writeValue( $literal, $typeBase, $typeLocal = null ) {
 		if ( $typeBase === null && $typeLocal === null ) {
-			$this->values[] = $literal;
+			$this->addTypedValue( self::DEFAULT_TYPE, $literal );
 			return;
 		}
 
 		switch ( $this->toIRI( $typeBase, $typeLocal ) ) {
 			case 'http://www.w3.org/2001/XMLSchema#string':
-				$this->values[] = strval( $literal );
+				$this->addTypedValue( self::DEFAULT_TYPE, strval( $literal ) );
 				return;
 			case 'http://www.w3.org/2001/XMLSchema#integer':
-				$this->values[] = intval( $literal );
+				$this->addTypedValue( self::DEFAULT_TYPE, intval( $literal ) );
 				return;
 			case 'http://www.w3.org/2001/XMLSchema#boolean':
-				$this->values[] = $literal === 'true';
+				$this->addTypedValue( self::DEFAULT_TYPE, ( $literal === 'true' ) );
 				return;
 			case 'http://www.w3.org/2001/XMLSchema#double':
 				$v = doubleval( $literal );
@@ -304,32 +355,80 @@ class JsonLdRdfWriter extends RdfWriterBase {
 				// xsd:integer.
 				// TODO: consider instead using JSON_PRESERVE_ZERO_FRACTION
 				// in $this->encode() once our required PHP >= 5.6.6.
+				// OTOH, the spec language is ambiguous about whether "5."
+				// would be considered an integer or a double.
 				if ( strpos( json_encode( $v ), '.' ) !== false ) {
-					$this->values[] = $v;
+					$this->addTypedValue( self::DEFAULT_TYPE, $v );
 					return;
 				}
 		}
 
-		$this->values[] = [
-			"@type" => $this->compactify( $typeBase, $typeLocal ),
-			"@value" => strval( $literal )
-		];
+		$type = $this->compactify( $typeBase, $typeLocal );
+		$literal = strval( $literal );
+		$this->addTypedValue( $type, $literal, [
+			"@type" => $type,
+			"@value" => $literal
+		] );
+	}
+
+	/**
+	 * Add a typed value for the given predicate.  If possible, adds a
+	 * default type to the context to avoid having to repeat type information
+	 * in each value for this predicate.  If there is already a default
+	 * type which conflicts with this one, or if $forceExpand is true,
+	 * then use the "expanded" value which will explicitly override any
+	 * default type.
+	 *
+	 * @param string $type The compactified JSON-LD @type for this value, or
+	 *  self::DEFAULT_TYPE to indicate the default JSON-LD type coercion rules
+	 *  should be used.
+	 * @param string|int|float|bool $simpleVal The "simple" representation
+	 *  for this value, used if the type can be hoisted into the context.
+	 * @param array|null $expandedVal The "expanded" representation for this
+	 *  value, used if the context @type conflicts with this value; or null
+	 *  to use "@value" for the expanded representation.
+	 * @param bool $forceExpand If true, don't try to add this type to the
+	 *  context. Defaults to false.
+	 */
+	protected function addTypedValue( $type, $simpleVal, $expandedVal=null, $forceExpand=false ) {
+		if ( !$forceExpand ) {
+			$pred = $this->getCurrentTerm();
+			if ( $type === self::DEFAULT_TYPE ) {
+				if ( !isset( $this->context[ $pred ][ "@type" ] ) ) {
+					$this->defaulted[ $pred ] = true;
+				}
+				if ( isset( $this->defaulted[ $pred ] ) ) {
+					$this->values[] = $simpleVal;
+					return;
+				}
+			} elseif ( !isset( $this->defaulted[ $pred ] ) ) {
+				if ( !isset( $this->context[ $pred ] ) ) {
+					$this->context[ $pred ] = [];
+				}
+				if ( !isset( $this->context[ $pred ][ "@type" ] ) ) {
+					$this->context[ $pred ][ "@type" ] = $type;
+				}
+				if ( $this->context[ $pred ][ "@type" ] === $type ) {
+					$this->values[] = $simpleVal;
+					return;
+				}
+			}
+		}
+		if ( $expandedVal === null ) {
+			$this->values[] = [ "@value" => $simpleVal ];
+		} else {
+			$this->values[] = $expandedVal;
+		}
 	}
 
 	protected function finishPredicate() {
-		list( $base, $local ) = $this->currentPredicate;
-		$predIRI = $this->toIRI( $base, $local );
+		$name = $this->getCurrentTerm();
 
-		if ( $predIRI === self::RDF_TYPE_IRI ) {
-			// TODO: the context can optionally specify other predicates
-			// have type "@id" or "@vocab", which would trigger this
-			// same coercion.  See https://www.w3.org/TR/json-ld/#iris
+		if ( $name === self::RDF_TYPE_IRI ) {
 			$name = "@type";
 			$this->values = array_map( function ( array $val ) {
 				return $val[ "@id" ];
 			}, $this->values );
-		} else {
-			$name = $this->compactify( $base, $local );
 		}
 		if ( isset( $this->predicates[$name] ) ) {
 			$was = $this->predicates[$name];
@@ -365,6 +464,8 @@ class JsonLdRdfWriter extends RdfWriterBase {
 
 		// Have subwriter share context with this parent.
 		$writer->context = &$this->context;
+		$writer->defaulted = &$this->defaulted;
+
 		// We can't use the @graph optimization.
 		$this->disableGraphOpt = true;
 

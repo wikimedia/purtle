@@ -2,20 +2,34 @@
     "@graph": [
         {
             "@id": "exstaff:85740",
-            "exterms:address": {
-                "@id": "_:johnaddress"
-            }
+            "address": "_:johnaddress"
         },
         {
             "@id": "_:johnaddress",
-            "exterms:street": "1501 Grant Avenue",
-            "exterms:city": "Bedfort",
-            "exterms:state": "Massachusetts",
-            "exterms:postalCode": "01730"
+            "street": "1501 Grant Avenue",
+            "city": "Bedfort",
+            "state": "Massachusetts",
+            "postalCode": "01730"
         }
     ],
     "@context": {
         "exstaff": "http://www.example.org/staffid/",
-        "exterms": "http://www.example.org/terms/"
+        "exterms": "http://www.example.org/terms/",
+        "address": {
+            "@id": "exterms:address",
+            "@type": "@id"
+        },
+        "street": {
+            "@id": "exterms:street"
+        },
+        "city": {
+            "@id": "exterms:city"
+        },
+        "state": {
+            "@id": "exterms:state"
+        },
+        "postalCode": {
+            "@id": "exterms:postalCode"
+        }
     }
 }

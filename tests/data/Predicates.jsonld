@@ -3,7 +3,7 @@
         {
             "@id": "http://foobar.test/Bananas",
             "@type": "http://foobar.test/Fruit",
-            "http://acme.test/name": [
+            "name": [
                 "Banana",
                 {
                     "@language": "de",
@@ -13,7 +13,12 @@
         },
         {
             "@id": "http://foobar.test/Apples",
-            "http://acme.test/name": "Apple"
+            "name": "Apple"
         }
-    ]
+    ],
+    "@context": {
+        "name": {
+            "@id": "http://acme.test/name"
+        }
+    }
 }

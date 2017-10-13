@@ -2,27 +2,30 @@
     "@graph": [
         {
             "@id": "exstaff:Sue",
-            "exterms:publication": {
-                "@id": "_:genid1"
-            }
+            "publication": "_:genid1"
         },
         {
             "@id": "_:genid1",
-            "exterms:title": "Antology of Time"
+            "title": "Antology of Time"
         },
         {
             "@id": "exstaff:Jack",
-            "exterms:publication": {
-                "@id": "_:genid2"
-            }
+            "publication": "_:genid2"
         },
         {
             "@id": "_:genid2",
-            "exterms:title": "Anthony of Time"
+            "title": "Anthony of Time"
         }
     ],
     "@context": {
         "exstaff": "http://www.example.org/staffid/",
-        "exterms": "http://www.example.org/terms/"
+        "exterms": "http://www.example.org/terms/",
+        "publication": {
+            "@id": "exterms:publication",
+            "@type": "@id"
+        },
+        "title": {
+            "@id": "exterms:title"
+        }
     }
 }
