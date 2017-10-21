@@ -2,7 +2,6 @@
 
 namespace Wikimedia\Purtle;
 
-use InvalidArgumentException;
 use LogicException;
 
 /**
