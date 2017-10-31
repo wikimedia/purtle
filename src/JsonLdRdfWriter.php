@@ -332,7 +332,14 @@ class JsonLdRdfWriter extends RdfWriterBase {
 			$name = $this->compactify( $base, $local );
 		}
 		if ( isset( $this->predicates[$name] ) ) {
-			$this->values = array_merge( (array)$this->predicates[$name], $this->values );
+			$was = $this->predicates[$name];
+			// Wrap $was into a numeric indexed array if it isn't already.
+			// Note that $was could have non-numeric indices, eg
+			// [ "@id" => "foo" ], in which was it still needs to be wrapped.
+			if ( !( is_array( $was ) && isset( $was[0] ) ) ) {
+				$was = [ $was ];
+			}
+			$this->values = array_merge( $was, $this->values );
 		}
 
 		$cnt = count( $this->values );
