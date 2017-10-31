@@ -1,0 +1,11 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix wikibase: <http://wikiba.se/ontology-beta#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+wikibase:Dump owl:foo owl:A ;
+	owl:bar "5"^^xsd:decimal ;
+	owl:foo owl:B ;
+	owl:bar "6"^^xsd:decimal ;
+	owl:foo owl:C ;
+	owl:bar "7"^^xsd:decimal .

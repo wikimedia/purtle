@@ -1,0 +1,6 @@
+<http://wikiba.se/ontology-beta#Dump> <http://www.w3.org/2002/07/owl#foo> <http://www.w3.org/2002/07/owl#A> .
+<http://wikiba.se/ontology-beta#Dump> <http://www.w3.org/2002/07/owl#bar> "5"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<http://wikiba.se/ontology-beta#Dump> <http://www.w3.org/2002/07/owl#foo> <http://www.w3.org/2002/07/owl#B> .
+<http://wikiba.se/ontology-beta#Dump> <http://www.w3.org/2002/07/owl#bar> "6"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<http://wikiba.se/ontology-beta#Dump> <http://www.w3.org/2002/07/owl#foo> <http://www.w3.org/2002/07/owl#C> .
+<http://wikiba.se/ontology-beta#Dump> <http://www.w3.org/2002/07/owl#bar> "7"^^<http://www.w3.org/2001/XMLSchema#decimal> .

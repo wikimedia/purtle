@@ -355,6 +355,23 @@ abstract class RdfWriterTestBase extends PHPUnit_Framework_TestCase {
 		$this->assertOutputLines( 'DumpHeader', $rdf );
 	}
 
+	public function testAlternatingValues() {
+		$writer = $this->newWriter();
+		$writer->prefix( 'wikibase', 'http://wikiba.se/ontology-beta#' );
+		$writer->prefix( 'owl', 'http://www.w3.org/2002/07/owl#' );
+		$writer->start();
+		$writer->about( 'wikibase', 'Dump' )
+			   ->say( 'owl', 'foo' )->is( 'owl', 'A' )
+			   ->say( 'owl', 'bar' )->value( '5', 'xsd', 'decimal' )
+			   ->say( 'owl', 'foo' )->is( 'owl', 'B' )
+			   ->say( 'owl', 'bar' )->value( '6', 'xsd', 'decimal' )
+			   ->say( 'owl', 'foo' )->is( 'owl', 'C' )
+			   ->say( 'owl', 'bar' )->value( '7', 'xsd', 'decimal' );
+		$writer->finish();
+		$rdf = $writer->drain();
+		$this->assertOutputLines( 'AlternatingValues', $rdf );
+	}
+
 	/**
 	 * @param string $datasetName
 	 * @param string[]|string $actual
