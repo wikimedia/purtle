@@ -343,12 +343,12 @@ abstract class RdfWriterTestBase extends PHPUnit_Framework_TestCase {
 		$writer->prefix( 'cc', 'http://creativecommons.org/ns#' );
 		$writer->start();
 		$writer->about( 'wikibase', 'Dump' )
-			   ->a( 'schema', "Dataset" )
-			   ->a( 'owl', 'Ontology' )
-			   ->say( 'cc', 'license' )->is( 'http://creativecommons.org/publicdomain/zero/1.0/' )
-			   ->say( 'schema', 'softwareVersion' )->value( '0.1.0' )
-			   ->say( 'schema', 'dateModified' )->value( '2017-09-19T22:53:13-04:00', 'xsd', 'dateTime' )
-			   ->say( 'owl', 'imports' )->is( 'http://wikiba.se/ontology-1.0.owl' );
+			->a( 'schema', "Dataset" )
+			->a( 'owl', 'Ontology' )
+			->say( 'cc', 'license' )->is( 'http://creativecommons.org/publicdomain/zero/1.0/' )
+			->say( 'schema', 'softwareVersion' )->value( '0.1.0' )
+			->say( 'schema', 'dateModified' )->value( '2017-09-19T22:53:13-04:00', 'xsd', 'dateTime' )
+			->say( 'owl', 'imports' )->is( 'http://wikiba.se/ontology-1.0.owl' );
 		$writer->finish();
 
 		$rdf = $writer->drain();
@@ -361,12 +361,12 @@ abstract class RdfWriterTestBase extends PHPUnit_Framework_TestCase {
 		$writer->prefix( 'owl', 'http://www.w3.org/2002/07/owl#' );
 		$writer->start();
 		$writer->about( 'wikibase', 'Dump' )
-			   ->say( 'owl', 'foo' )->is( 'owl', 'A' )
-			   ->say( 'owl', 'bar' )->value( '5', 'xsd', 'decimal' )
-			   ->say( 'owl', 'foo' )->is( 'owl', 'B' )
-			   ->say( 'owl', 'bar' )->value( '6', 'xsd', 'decimal' )
-			   ->say( 'owl', 'foo' )->is( 'owl', 'C' )
-			   ->say( 'owl', 'bar' )->value( '7', 'xsd', 'decimal' );
+			->say( 'owl', 'foo' )->is( 'owl', 'A' )
+			->say( 'owl', 'bar' )->value( '5', 'xsd', 'decimal' )
+			->say( 'owl', 'foo' )->is( 'owl', 'B' )
+			->say( 'owl', 'bar' )->value( '6', 'xsd', 'decimal' )
+			->say( 'owl', 'foo' )->is( 'owl', 'C' )
+			->say( 'owl', 'bar' )->value( '7', 'xsd', 'decimal' );
 		$writer->finish();
 		$rdf = $writer->drain();
 		$this->assertOutputLines( 'AlternatingValues', $rdf );
