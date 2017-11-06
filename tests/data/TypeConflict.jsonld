@@ -1,0 +1,35 @@
+{
+    "@graph": [
+        {
+            "@id": "ex:A",
+            "ex:foo": [
+                {
+                    "@id": "ex:Node"
+                },
+                {
+                    "@type": "xsd:decimal",
+                    "@value": "5"
+                },
+                "string"
+            ],
+            "ex:bar": [
+                "string",
+                {
+                    "@type": "xsd:decimal",
+                    "@value": "5"
+                }
+            ],
+            "ex:bat": "string"
+        },
+        {
+            "@id": "ex:B",
+            "ex:bat": {
+                "@id": "_:genid1"
+            }
+        }
+    ],
+    "@context": {
+        "ex": "http://example.com/",
+        "xsd": "http://www.w3.org/2001/XMLSchema#"
+    }
+}

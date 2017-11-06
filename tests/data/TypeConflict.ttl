@@ -1,0 +1,12 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ex: <http://example.com/> .
+
+ex:A ex:foo ex:Node,
+		"5"^^xsd:decimal,
+		"string" ;
+	ex:bar "string",
+		"5"^^xsd:decimal ;
+	ex:bat "string" .
+
+ex:B ex:bat _:genid1 .

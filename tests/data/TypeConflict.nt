@@ -1,0 +1,7 @@
+<http://example.com/A> <http://example.com/foo> <http://example.com/Node> .
+<http://example.com/A> <http://example.com/foo> "5"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<http://example.com/A> <http://example.com/foo> "string" .
+<http://example.com/A> <http://example.com/bar> "string" .
+<http://example.com/A> <http://example.com/bar> "5"^^<http://www.w3.org/2001/XMLSchema#decimal> .
+<http://example.com/A> <http://example.com/bat> "string" .
+<http://example.com/B> <http://example.com/bat> _:genid1 .

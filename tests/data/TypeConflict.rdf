@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#" xmlns:ex="http://example.com/">
+	<rdf:Description rdf:about="http://example.com/A">
+		<ex:foo rdf:resource="http://example.com/Node"/>
+		<ex:foo rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">5</ex:foo>
+		<ex:foo>string</ex:foo>
+		<ex:bar>string</ex:bar>
+		<ex:bar rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">5</ex:bar>
+		<ex:bat>string</ex:bat>
+	</rdf:Description>
+	<rdf:Description rdf:about="http://example.com/B">
+		<ex:bat rdf:nodeID="genid1"/>
+	</rdf:Description>
+</rdf:RDF>

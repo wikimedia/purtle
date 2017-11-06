@@ -372,6 +372,26 @@ abstract class RdfWriterTestBase extends PHPUnit_Framework_TestCase {
 		$this->assertOutputLines( 'AlternatingValues', $rdf );
 	}
 
+	public function testTypeConflict() {
+		$writer = $this->newWriter();
+		$writer->prefix( 'ex', 'http://example.com/' );
+		$writer->start();
+		$writer->about( 'ex', 'A' )
+			->say( 'ex', 'foo' )->is( 'ex', 'Node' )
+			->say( 'ex', 'foo' )->value( '5', 'xsd', 'decimal' )
+			->say( 'ex', 'foo' )->value( 'string' )
+			->say( 'ex', 'bar' )->value( 'string' )
+			->say( 'ex', 'bar' )->value( '5', 'xsd', 'decimal' )
+			->say( 'ex', 'bat' )->value( 'string' );
+		// A blank node is used in clients to indicate "any value"
+		$writer->about( 'ex', 'B' )
+			->say( 'ex', 'bat' )->is( '_', $writer->blank() );
+
+		$writer->finish();
+		$rdf = $writer->drain();
+		$this->assertOutputLines( 'TypeConflict', $rdf );
+	}
+
 	/**
 	 * @param string $datasetName
 	 * @param string[]|string $actual
