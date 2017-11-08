@@ -91,7 +91,7 @@ class JsonLdRdfWriter extends RdfWriterBase {
 	 * The type internally used for "default type", which is a string or
 	 * otherwise default-coerced type.
 	 */
-	const DEFAULT_TYPE = "@purtle@default@";
+	const DEFAULT_TYPE = '@purtle@default@';
 
 	/**
 	 * @param string $role
@@ -201,9 +201,9 @@ class JsonLdRdfWriter extends RdfWriterBase {
 			// Prefixes get priority over field names in @context
 			$pred = $this->compactify( $base, $local );
 			if ( !isset( $this->context[ $local ] ) ) {
-				$this->context[ $local ] = [ "@id" => $pred ];
+				$this->context[ $local ] = [ '@id' => $pred ];
 			}
-			if ( $this->context[ $local ][ "@id" ] === $pred ) {
+			if ( $this->context[ $local ][ '@id' ] === $pred ) {
 				return $local;
 			}
 			return $pred;
@@ -245,7 +245,7 @@ class JsonLdRdfWriter extends RdfWriterBase {
 			// Write @context field.
 			$this->write( ",\n" );
 			$this->write( $this->encode( [
-				"@context" => $this->context
+				'@context' => $this->context
 			], 0 ) );
 		}
 
@@ -281,7 +281,7 @@ class JsonLdRdfWriter extends RdfWriterBase {
 	 */
 	protected function writeSubject( $base, $local = null ) {
 		$this->predicates = [
-			"@id" => $this->compactify( $base, $local )
+			'@id' => $this->compactify( $base, $local )
 		];
 	}
 
@@ -305,8 +305,8 @@ class JsonLdRdfWriter extends RdfWriterBase {
 	protected function writeResource( $base, $local = null ) {
 		$pred = $this->getCurrentTerm();
 		$value = $this->compactify( $base, $local );
-		$this->addTypedValue( "@id", $value, [
-			"@id" => $value
+		$this->addTypedValue( '@id', $value, [
+			'@id' => $value
 		], ( $pred === self::RDF_TYPE_IRI ) );
 	}
 
@@ -319,8 +319,8 @@ class JsonLdRdfWriter extends RdfWriterBase {
 			$this->addTypedValue( self::DEFAULT_TYPE, $text );
 		} else {
 			$expanded = [
-				"@language" => $language,
-				"@value" => $text
+				'@language' => $language,
+				'@value' => $text
 			];
 			$this->addTypedValue( self::DEFAULT_TYPE, $expanded, $expanded );
 		}
@@ -366,8 +366,8 @@ class JsonLdRdfWriter extends RdfWriterBase {
 		$type = $this->compactify( $typeBase, $typeLocal );
 		$literal = strval( $literal );
 		$this->addTypedValue( $type, $literal, [
-			"@type" => $type,
-			"@value" => $literal
+			'@type' => $type,
+			'@value' => $literal
 		] );
 	}
 
@@ -394,7 +394,7 @@ class JsonLdRdfWriter extends RdfWriterBase {
 		if ( !$forceExpand ) {
 			$pred = $this->getCurrentTerm();
 			if ( $type === self::DEFAULT_TYPE ) {
-				if ( !isset( $this->context[ $pred ][ "@type" ] ) ) {
+				if ( !isset( $this->context[ $pred ][ '@type' ] ) ) {
 					$this->defaulted[ $pred ] = true;
 				}
 				if ( isset( $this->defaulted[ $pred ] ) ) {
@@ -405,17 +405,17 @@ class JsonLdRdfWriter extends RdfWriterBase {
 				if ( !isset( $this->context[ $pred ] ) ) {
 					$this->context[ $pred ] = [];
 				}
-				if ( !isset( $this->context[ $pred ][ "@type" ] ) ) {
-					$this->context[ $pred ][ "@type" ] = $type;
+				if ( !isset( $this->context[ $pred ][ '@type' ] ) ) {
+					$this->context[ $pred ][ '@type' ] = $type;
 				}
-				if ( $this->context[ $pred ][ "@type" ] === $type ) {
+				if ( $this->context[ $pred ][ '@type' ] === $type ) {
 					$this->values[] = $simpleVal;
 					return;
 				}
 			}
 		}
 		if ( $expandedVal === null ) {
-			$this->values[] = [ "@value" => $simpleVal ];
+			$this->values[] = [ '@value' => $simpleVal ];
 		} else {
 			$this->values[] = $expandedVal;
 		}
@@ -425,9 +425,9 @@ class JsonLdRdfWriter extends RdfWriterBase {
 		$name = $this->getCurrentTerm();
 
 		if ( $name === self::RDF_TYPE_IRI ) {
-			$name = "@type";
+			$name = '@type';
 			$this->values = array_map( function ( array $val ) {
-				return $val[ "@id" ];
+				return $val[ '@id' ];
 			}, $this->values );
 		}
 		if ( isset( $this->predicates[$name] ) ) {
@@ -443,7 +443,7 @@ class JsonLdRdfWriter extends RdfWriterBase {
 
 		$cnt = count( $this->values );
 		if ( $cnt === 0 ) {
-			throw new LogicException( "finishPredicate can't be called without at least one value" );
+			throw new LogicException( 'finishPredicate can\'t be called without at least one value' );
 		} elseif ( $cnt === 1 ) {
 			$this->predicates[$name] = $this->values[0];
 		} else {

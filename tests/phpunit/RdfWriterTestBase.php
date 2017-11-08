@@ -343,7 +343,7 @@ abstract class RdfWriterTestBase extends PHPUnit_Framework_TestCase {
 		$writer->prefix( 'cc', 'http://creativecommons.org/ns#' );
 		$writer->start();
 		$writer->about( 'wikibase', 'Dump' )
-			->a( 'schema', "Dataset" )
+			->a( 'schema', 'Dataset' )
 			->a( 'owl', 'Ontology' )
 			->say( 'cc', 'license' )->is( 'http://creativecommons.org/publicdomain/zero/1.0/' )
 			->say( 'schema', 'softwareVersion' )->value( '0.1.0' )
