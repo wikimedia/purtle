@@ -44,10 +44,6 @@ abstract class N3RdfWriterBase extends RdfWriterBase {
 		$this->write( "<$iri>" );
 	}
 
-	protected function writeQName( $base, $local ) {
-		$this->write( "$base:$local" );
-	}
-
 	protected function writeText( $text, $language = null ) {
 		$value = $this->quoter->escapeLiteral( $text );
 		$this->write( '"' . $value . '"' );
