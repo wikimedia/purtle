@@ -11,7 +11,7 @@ use Wikimedia\Purtle\RdfWriter;
  *
  * @license GPL-2.0+
  * @author Daniel Kinzler
- * @author Thiemo Mättig
+ * @author Thiemo Kreuz
  */
 abstract class RdfWriterTestBase extends PHPUnit_Framework_TestCase {
 
