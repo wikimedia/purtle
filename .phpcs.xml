@@ -5,7 +5,7 @@
 		<exclude name="MediaWiki.Commenting.FunctionComment.MissingDocumentationProtected" />
 		<exclude name="MediaWiki.Commenting.FunctionComment.MissingDocumentationPublic" />
 		<exclude name="MediaWiki.Commenting.FunctionComment.MissingParamComment" />
-		<exclude name="MediaWiki.WhiteSpace.SpaceBeforeSingleLineComment" />
+		<exclude name="MediaWiki.WhiteSpace.SpaceBeforeSingleLineComment.NewLineComment" />
 	</rule>
 
 	<rule ref="Generic.Files.InlineHTML" />
