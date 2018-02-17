@@ -14,7 +14,7 @@ use Wikimedia\Purtle\UnicodeEscaper;
  * @author Daniel Kinzler
  * @author Thiemo Kreuz
  */
-class UnicodeEscaperTest extends \PHPUnit_Framework_TestCase {
+class UnicodeEscaperTest extends \PHPUnit\Framework\TestCase {
 
 	public function provideEscapeString() {
 		return [

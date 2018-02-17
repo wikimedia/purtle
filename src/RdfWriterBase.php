@@ -317,7 +317,7 @@ abstract class RdfWriterBase implements RdfWriter {
 		$this->drainSubs();
 		$this->flattenBuffer();
 
-		$rdf = join( '', $this->buffer );
+		$rdf = implode( '', $this->buffer );
 		$this->buffer = [];
 
 		return $rdf;

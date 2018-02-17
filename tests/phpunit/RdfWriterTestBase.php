@@ -2,7 +2,6 @@
 
 namespace Wikimedia\Purtle\Tests;
 
-use PHPUnit_Framework_TestCase;
 use Wikimedia\Purtle\RdfWriter;
 
 /**
@@ -13,7 +12,7 @@ use Wikimedia\Purtle\RdfWriter;
  * @author Daniel Kinzler
  * @author Thiemo Kreuz
  */
-abstract class RdfWriterTestBase extends PHPUnit_Framework_TestCase {
+abstract class RdfWriterTestBase extends \PHPUnit\Framework\TestCase {
 
 	abstract protected function getFileSuffix();
 

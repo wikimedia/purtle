@@ -2,7 +2,6 @@
 
 namespace Wikimedia\Purtle\Tests;
 
-use PHPUnit_Framework_TestCase;
 use Wikimedia\Purtle\N3Quoter;
 use Wikimedia\Purtle\UnicodeEscaper;
 
@@ -16,7 +15,7 @@ use Wikimedia\Purtle\UnicodeEscaper;
  * @license GPL-2.0+
  * @author Daniel Kinzler
  */
-class N3QuoterTest extends PHPUnit_Framework_TestCase {
+class N3QuoterTest extends \PHPUnit\Framework\TestCase {
 
 	public function provideEscapeIRI() {
 		return [
