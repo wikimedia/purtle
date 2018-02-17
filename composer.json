@@ -33,7 +33,7 @@
 	"require-dev": {
 		"mediawiki/mediawiki-codesniffer": "15.0.0",
 		"ockcyp/covers-validator": "~0.4.0",
-		"phpunit/phpunit": "4.8.24",
+		"phpunit/phpunit": "4.8.36",
 		"phpmd/phpmd": "~2.3"
 	},
 	"autoload": {
