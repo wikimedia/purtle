@@ -12,7 +12,7 @@ use Wikimedia\Purtle\JsonLdRdfWriter;
  * @group Purtle
  * @group RdfWriter
  *
- * @license GPL-2.0+
+ * @license GPL-2.0-or-later
  * @author C. Scott Ananian
  */
 class JsonLdRdfWriterTest extends RdfWriterTestBase {

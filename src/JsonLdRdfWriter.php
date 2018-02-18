@@ -7,7 +7,7 @@ use LogicException;
 /**
  * RdfWriter implementation for generating JSON-LD output.
  *
- * @license GPL-2.0+
+ * @license GPL-2.0-or-later
  * @author C. Scott Ananian
  */
 class JsonLdRdfWriter extends RdfWriterBase {

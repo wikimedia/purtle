@@ -9,7 +9,7 @@
 		"Turtle"
 	],
 	"homepage": "https://mediawiki.org/wiki/Purtle",
-	"license": "GPL-2.0+",
+	"license": "GPL-2.0-or-later",
 	"authors": [
 		{
 			"name": "Daniel Kinzler"

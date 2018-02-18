@@ -7,7 +7,7 @@ use InvalidArgumentException;
 /**
  * @since 0.5
  *
- * @license GPL-2.0+
+ * @license GPL-2.0-or-later
  * @author Daniel Kinzler
  */
 class RdfWriterFactory {

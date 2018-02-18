@@ -30,7 +30,7 @@ namespace Wikimedia\Purtle;
  * - no collections
  * - no automatic conversion of iris to qnames
  *
- * @license GPL-2.0+
+ * @license GPL-2.0-or-later
  * @author Daniel Kinzler
  */
 interface RdfWriter {

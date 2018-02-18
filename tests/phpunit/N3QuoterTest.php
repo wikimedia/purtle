@@ -12,7 +12,7 @@ use Wikimedia\Purtle\UnicodeEscaper;
  *
  * @group Purtle
  *
- * @license GPL-2.0+
+ * @license GPL-2.0-or-later
  * @author Daniel Kinzler
  */
 class N3QuoterTest extends \PHPUnit\Framework\TestCase {

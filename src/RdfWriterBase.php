@@ -13,7 +13,7 @@ use LogicException;
  * for the respective RDF constructs. Subclasses may override the startXXX() and finishXXX()
  * methods to generate structural output, and override expandXXX() to transform identifiers.
  *
- * @license GPL-2.0+
+ * @license GPL-2.0-or-later
  * @author Daniel Kinzler
  */
 abstract class RdfWriterBase implements RdfWriter {

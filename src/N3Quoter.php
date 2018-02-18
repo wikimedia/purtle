@@ -6,7 +6,7 @@ namespace Wikimedia\Purtle;
  * Helper class for quoting literals and URIs in N3 output.
  * Optionally supports shorthand and prefix resolution.
  *
- * @license GPL-2.0+
+ * @license GPL-2.0-or-later
  * @author Daniel Kinzler
  */
 class N3Quoter {
