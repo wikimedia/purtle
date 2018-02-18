@@ -34,7 +34,8 @@
 		"mediawiki/mediawiki-codesniffer": "16.0.0",
 		"ockcyp/covers-validator": "^0.5.0",
 		"phpunit/phpunit": "4.8.36",
-		"phpmd/phpmd": "~2.3"
+		"phpmd/phpmd": "~2.3",
+		"mediawiki/minus-x": "0.3.1"
 	},
 	"autoload": {
 		"psr-4": {
@@ -51,7 +52,8 @@
 		"test": [
 			"composer validate --no-interaction",
 			"phpunit",
-			"covers-validator"
+			"covers-validator",
+			"minus-x check ."
 		],
 		"cs": [
 			"phpcs -p -s",
@@ -62,7 +64,8 @@
 			"@test"
 		],
 		"fix": [
-			"phpcbf"
+			"phpcbf",
+			"minus-x fix ."
 		]
 	}
 }
