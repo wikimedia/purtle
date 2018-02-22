@@ -6,10 +6,10 @@ use Wikimedia\Purtle\XmlRdfWriter;
 use Wikimedia\Purtle\RdfWriter;
 
 /**
- * @covers Wikimedia\Purtle\XmlRdfWriter
- * @covers Wikimedia\Purtle\RdfWriterBase
+ * @covers \Wikimedia\Purtle\XmlRdfWriter
+ * @covers \Wikimedia\Purtle\RdfWriterBase
  *
- * @uses Wikimedia\Purtle\BNodeLabeler
+ * @uses \Wikimedia\Purtle\BNodeLabeler
  *
  * @group Purtle
  * @group RdfWriter

@@ -6,8 +6,8 @@ use Wikimedia\Purtle\RdfWriter;
 use Wikimedia\Purtle\JsonLdRdfWriter;
 
 /**
- * @covers Wikimedia\Purtle\JsonLdRdfWriter
- * @covers Wikimedia\Purtle\RdfWriterBase
+ * @covers \Wikimedia\Purtle\JsonLdRdfWriter
+ * @covers \Wikimedia\Purtle\RdfWriterBase
  *
  * @group Purtle
  * @group RdfWriter
