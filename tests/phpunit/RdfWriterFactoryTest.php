@@ -45,9 +45,11 @@ class RdfWriterFactoryTest extends \PHPUnit\Framework\TestCase {
 		}
 	}
 
+	/**
+	 * @expectedException InvalidArgumentException
+	 */
 	public function testGivenInvalidFormat_getWriterThrowsException() {
 		$factory = new RdfWriterFactory();
-		$this->setExpectedException( InvalidArgumentException::class );
 		$factory->getWriter( 'invalid' );
 	}
 
@@ -127,9 +129,11 @@ class RdfWriterFactoryTest extends \PHPUnit\Framework\TestCase {
 		}
 	}
 
+	/**
+	 * @expectedException InvalidArgumentException
+	 */
 	public function testGivenInvalidFormat_getMimeTypesThrowsException() {
 		$factory = new RdfWriterFactory();
-		$this->setExpectedException( InvalidArgumentException::class );
 		$factory->getMimeTypes( 'invalid' );
 	}
 
@@ -143,9 +147,11 @@ class RdfWriterFactoryTest extends \PHPUnit\Framework\TestCase {
 		}
 	}
 
+	/**
+	 * @expectedException InvalidArgumentException
+	 */
 	public function testGivenInvalidFormat_getFileExtensionsThrowsException() {
 		$factory = new RdfWriterFactory();
-		$this->setExpectedException( InvalidArgumentException::class );
 		$factory->getFileExtension( 'invalid' );
 	}
 
