@@ -1,6 +1,5 @@
 <?xml version="1.0"?>
 <ruleset>
-	<!-- See https://github.com/wikimedia/mediawiki-tools-codesniffer/blob/master/MediaWiki/ruleset.xml -->
 	<rule ref="./vendor/mediawiki/mediawiki-codesniffer/MediaWiki">
 		<exclude name="MediaWiki.Commenting.FunctionComment.MissingDocumentationProtected" />
 		<exclude name="MediaWiki.Commenting.FunctionComment.MissingDocumentationPublic" />
@@ -16,25 +15,14 @@
 	<rule ref="Generic.Metrics.NestingLevel" />
 
 	<rule ref="MediaWiki.NamingConventions.LowerCamelFunctionsName.FunctionName">
-		<!-- Exclude test methods like "testGivenInvalidInput_methodThrowsException". -->
-		<exclude-pattern>tests/phpunit/*Test*\.php</exclude-pattern>
+		<exclude-pattern>RdfWriterTestBase\.php</exclude-pattern>
 	</rule>
 
-	<rule ref="PSR1" />
-	<rule ref="PSR1.Files.SideEffects.FoundWithSymbols">
-		<exclude-pattern>Purtle\.php</exclude-pattern>
-	</rule>
-	<rule ref="PSR1.Methods.CamelCapsMethodName.NotCamelCaps">
-		<!-- Exclude test methods like "testGivenInvalidInput_methodThrowsException". -->
-		<exclude-pattern>tests/phpunit/*Test*\.php</exclude-pattern>
-	</rule>
-
-	<rule ref="PSR2.Files" />
+	<rule ref="PSR1.Classes.ClassDeclaration" />
+	<rule ref="PSR2.Files.ClosingTag" />
 
 	<rule ref="Squiz.ControlStructures.ControlSignature" />
-	<rule ref="Squiz.Functions.FunctionDuplicateArgument" />
 	<rule ref="Squiz.Functions.GlobalFunction" />
-	<rule ref="Squiz.Scope" />
 	<rule ref="Squiz.Strings.DoubleQuoteUsage">
 		<exclude name="Squiz.Strings.DoubleQuoteUsage.ContainsVar" />
 	</rule>
