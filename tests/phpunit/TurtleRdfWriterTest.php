@@ -6,12 +6,12 @@ use Wikimedia\Purtle\RdfWriter;
 use Wikimedia\Purtle\TurtleRdfWriter;
 
 /**
- * @covers Wikimedia\Purtle\TurtleRdfWriter
- * @covers Wikimedia\Purtle\N3RdfWriterBase
- * @covers Wikimedia\Purtle\RdfWriterBase
+ * @covers \Wikimedia\Purtle\TurtleRdfWriter
+ * @covers \Wikimedia\Purtle\N3RdfWriterBase
+ * @covers \Wikimedia\Purtle\RdfWriterBase
  *
- * @uses Wikimedia\Purtle\BNodeLabeler
- * @uses Wikimedia\Purtle\N3Quoter
+ * @uses \Wikimedia\Purtle\BNodeLabeler
+ * @uses \Wikimedia\Purtle\N3Quoter
  *
  * @group Purtle
  * @group RdfWriter

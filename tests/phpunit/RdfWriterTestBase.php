@@ -2,7 +2,9 @@
 
 namespace Wikimedia\Purtle\Tests;
 
+use Wikimedia\Purtle\BNodeLabeler;
 use Wikimedia\Purtle\RdfWriter;
+use Wikimedia\Purtle\RdfWriterFactory;
 
 /**
  * Base class for tests for RdfWriter implementations.
@@ -389,6 +391,24 @@ abstract class RdfWriterTestBase extends \PHPUnit\Framework\TestCase {
 		$writer->finish();
 		$rdf = $writer->drain();
 		$this->assertOutputLines( 'TypeConflict', $rdf );
+	}
+
+	/**
+	 * @return RdfWriter
+	 */
+	protected function newWriterFactory( BNodeLabeler $labeler = null) {
+		$factory = new RdfWriterFactory();
+		return $factory->getWriter( $factory->getFormatName( $this->getFileSuffix() ), $labeler );
+	}
+
+	public function testSetLabeler() {
+		$writer = $this->newWriterFactory();
+		$bnode = $writer->blank();
+		$this->assertEquals( 'genid1', $bnode );
+
+		$writer = $this->newWriterFactory( new BNodeLabeler( 'testme2-', 10 ) );
+		$bnode = $writer->blank();
+		$this->assertEquals( 'testme2-10', $bnode );
 	}
 
 	/**
