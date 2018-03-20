@@ -1,5 +1,10 @@
 # Purtle release notes
 
+## Version 1.0.7 (2018-03-20)
+* Add JSON-LD support
+* Improve speed of `N3Quoter::escapeLiteral`
+* Add ability to set `BNodeLabeler` to `RdfWriterFactory::getWriter`
+
 ## Version 1.0.6 (2017-06-27)
 * Remove code for MediaWiki framework integration
 * Fix phpcs issues
