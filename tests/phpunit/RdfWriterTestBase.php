@@ -394,9 +394,11 @@ abstract class RdfWriterTestBase extends \PHPUnit\Framework\TestCase {
 	}
 
 	/**
+	 * @param BNodeLabeler|null $labeler
+	 *
 	 * @return RdfWriter
 	 */
-	protected function newWriterFactory( BNodeLabeler $labeler = null) {
+	protected function newWriterFactory( BNodeLabeler $labeler = null ) {
 		$factory = new RdfWriterFactory();
 		return $factory->getWriter( $factory->getFormatName( $this->getFileSuffix() ), $labeler );
 	}
