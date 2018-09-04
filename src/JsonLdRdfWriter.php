@@ -390,7 +390,7 @@ class JsonLdRdfWriter extends RdfWriterBase {
 	 * @param bool $forceExpand If true, don't try to add this type to the
 	 *  context. Defaults to false.
 	 */
-	protected function addTypedValue( $type, $simpleVal, $expandedVal=null, $forceExpand=false ) {
+	protected function addTypedValue( $type, $simpleVal, $expandedVal = null, $forceExpand = false ) {
 		if ( !$forceExpand ) {
 			$pred = $this->getCurrentTerm();
 			if ( $type === self::DEFAULT_TYPE ) {

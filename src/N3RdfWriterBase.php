@@ -65,7 +65,7 @@ abstract class N3RdfWriterBase extends RdfWriterBase {
 	 */
 	protected function writeValue( $value, $typeBase, $typeLocal = null ) {
 		$value = $this->quoter->escapeLiteral( $value );
-		$this->write( '"' . $value. '"' );
+		$this->write( '"' . $value . '"' );
 
 		if ( $typeBase !== null ) {
 			$this->write( '^^' );
