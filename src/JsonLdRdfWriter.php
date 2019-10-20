@@ -348,7 +348,7 @@ class JsonLdRdfWriter extends RdfWriterBase {
 				$this->addTypedValue( self::DEFAULT_TYPE, ( $literal === 'true' ) );
 				return;
 			case 'http://www.w3.org/2001/XMLSchema#double':
-				$v = doubleval( $literal );
+				$v = floatval( $literal );
 				// Only "numbers with fractions" are xsd:double.  We need
 				// to verify that the JSON string will contain a decimal
 				// point, otherwise the value would be interpreted as an
