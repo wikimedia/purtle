@@ -2,8 +2,8 @@
 
 namespace Wikimedia\Purtle\Tests;
 
-use Wikimedia\Purtle\RdfWriter;
 use Wikimedia\Purtle\JsonLdRdfWriter;
+use Wikimedia\Purtle\RdfWriter;
 
 /**
  * @covers \Wikimedia\Purtle\JsonLdRdfWriter

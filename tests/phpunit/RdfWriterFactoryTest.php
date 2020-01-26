@@ -31,7 +31,7 @@ class RdfWriterFactoryTest extends \PHPUnit\Framework\TestCase {
 
 		$formats = $factory->getSupportedFormats();
 
-		$this->assertInternalType( 'array', $formats );
+		$this->assertIsArray( $formats );
 		$this->assertNotEmpty( $formats );
 	}
 
@@ -124,7 +124,7 @@ class RdfWriterFactoryTest extends \PHPUnit\Framework\TestCase {
 		foreach ( $factory->getSupportedFormats() as $format ) {
 			$mimeTypes = $factory->getMimeTypes( $format );
 
-			$this->assertInternalType( 'array', $mimeTypes );
+			$this->assertIsArray( $mimeTypes );
 			$this->assertNotEmpty( $mimeTypes );
 		}
 	}
@@ -143,7 +143,7 @@ class RdfWriterFactoryTest extends \PHPUnit\Framework\TestCase {
 		foreach ( $factory->getSupportedFormats() as $format ) {
 			$extension = $factory->getFileExtension( $format );
 
-			$this->assertInternalType( 'string', $extension );
+			$this->assertIsString( $extension );
 		}
 	}
 

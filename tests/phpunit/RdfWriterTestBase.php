@@ -35,7 +35,7 @@ abstract class RdfWriterTestBase extends \PHPUnit\Framework\TestCase {
 
 	public function testGetMimeType() {
 		$mimeType = $this->newWriter()->getMimeType();
-		$this->assertInternalType( 'string', $mimeType );
+		$this->assertIsString( $mimeType );
 		$this->assertRegExp( '/^\w+\/[\w-]+(\+(xml|json))?(; charset=UTF-8)?$/', $mimeType );
 	}
 

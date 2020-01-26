@@ -2,8 +2,8 @@
 
 namespace Wikimedia\Purtle\Tests;
 
-use Wikimedia\Purtle\XmlRdfWriter;
 use Wikimedia\Purtle\RdfWriter;
+use Wikimedia\Purtle\XmlRdfWriter;
 
 /**
  * @covers \Wikimedia\Purtle\XmlRdfWriter

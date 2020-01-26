@@ -33,7 +33,7 @@
 	"require-dev": {
 		"jakub-onderka/php-parallel-lint": "1.0.0",
 		"jakub-onderka/php-console-highlighter": "0.3.2",
-		"mediawiki/mediawiki-codesniffer": "28.0.0",
+		"mediawiki/mediawiki-codesniffer": "29.0.0",
 		"ockcyp/covers-validator": "^1.1.0",
 		"phpunit/phpunit": "^8.5",
 		"phpmd/phpmd": "~2.3",
@@ -67,8 +67,8 @@
 			"@test"
 		],
 		"fix": [
-			"phpcbf",
-			"minus-x fix ."
+			"minus-x fix .",
+			"phpcbf"
 		]
 	}
 }
