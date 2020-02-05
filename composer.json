@@ -34,10 +34,10 @@
 		"jakub-onderka/php-parallel-lint": "1.0.0",
 		"jakub-onderka/php-console-highlighter": "0.4.0",
 		"mediawiki/mediawiki-codesniffer": "29.0.0",
-		"ockcyp/covers-validator": "^1.1.0",
+		"ockcyp/covers-validator": "1.1.1",
 		"phpunit/phpunit": "^8.5",
 		"phpmd/phpmd": "~2.3",
-		"mediawiki/minus-x": "0.3.2"
+		"mediawiki/minus-x": "1.0.0"
 	},
 	"autoload": {
 		"psr-4": {
