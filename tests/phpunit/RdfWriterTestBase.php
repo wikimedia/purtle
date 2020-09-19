@@ -16,6 +16,9 @@ use Wikimedia\Purtle\RdfWriterFactory;
  */
 abstract class RdfWriterTestBase extends \PHPUnit\Framework\TestCase {
 
+	/**
+	 * @return string
+	 */
 	abstract protected function getFileSuffix();
 
 	/**

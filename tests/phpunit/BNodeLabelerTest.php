@@ -18,9 +18,9 @@ class BNodeLabelerTest extends \PHPUnit\Framework\TestCase {
 
 	/**
 	 * @dataProvider invalidConstructorArgumentsProvider
-	 * @expectedException InvalidArgumentException
 	 */
 	public function testInvalidConstructorArguments( $prefix, $start ) {
+		$this->expectException( InvalidArgumentException::class );
 		new BNodeLabeler( $prefix, $start );
 	}
 

@@ -187,6 +187,8 @@ class JsonLdRdfWriter extends RdfWriterBase {
 
 	/**
 	 * Return a appropriate term for the current predicate value.
+	 *
+	 * @return string
 	 */
 	private function getCurrentTerm() {
 		list( $base, $local ) = $this->currentPredicate;
