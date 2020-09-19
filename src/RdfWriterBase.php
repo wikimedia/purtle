@@ -28,12 +28,12 @@ abstract class RdfWriterBase implements RdfWriter {
 	 */
 	private $subs = [];
 
-	const STATE_START = 0;
-	const STATE_DOCUMENT = 5;
-	const STATE_SUBJECT = 10;
-	const STATE_PREDICATE = 11;
-	const STATE_OBJECT = 12;
-	const STATE_FINISH = 666;
+	protected const STATE_START = 0;
+	protected const STATE_DOCUMENT = 5;
+	protected const STATE_SUBJECT = 10;
+	protected const STATE_PREDICATE = 11;
+	protected const STATE_OBJECT = 12;
+	protected const STATE_FINISH = 666;
 
 	/**
 	 * @var string the current state
@@ -74,18 +74,18 @@ abstract class RdfWriterBase implements RdfWriter {
 	/**
 	 * Role ID for writers that will generate a full RDF document.
 	 */
-	const DOCUMENT_ROLE = 'document';
-	const SUBDOCUMENT_ROLE = 'sub';
+	public const DOCUMENT_ROLE = 'document';
+	public const SUBDOCUMENT_ROLE = 'sub';
 
 	/**
 	 * Role ID for writers that will generate a single inline blank node.
 	 */
-	const BNODE_ROLE = 'bnode';
+	private const BNODE_ROLE = 'bnode';
 
 	/**
 	 * Role ID for writers that will generate a single inline RDR statement.
 	 */
-	const STATEMENT_ROLE = 'statement';
+	private const STATEMENT_ROLE = 'statement';
 
 	/**
 	 * @var string The writer's role, see the XXX_ROLE constants.

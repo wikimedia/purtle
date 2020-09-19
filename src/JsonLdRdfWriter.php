@@ -85,13 +85,13 @@ class JsonLdRdfWriter extends RdfWriterBase {
 	/**
 	 * The IRI for the RDF `type` property.
 	 */
-	const RDF_TYPE_IRI = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type';
+	private const RDF_TYPE_IRI = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type';
 
 	/**
 	 * The type internally used for "default type", which is a string or
 	 * otherwise default-coerced type.
 	 */
-	const DEFAULT_TYPE = '@purtle@default@';
+	private const DEFAULT_TYPE = '@purtle@default@';
 
 	/**
 	 * @param string $role
