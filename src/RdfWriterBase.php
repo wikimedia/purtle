@@ -78,16 +78,6 @@ abstract class RdfWriterBase implements RdfWriter {
 	public const SUBDOCUMENT_ROLE = 'sub';
 
 	/**
-	 * Role ID for writers that will generate a single inline blank node.
-	 */
-	private const BNODE_ROLE = 'bnode';
-
-	/**
-	 * Role ID for writers that will generate a single inline RDR statement.
-	 */
-	private const STATEMENT_ROLE = 'statement';
-
-	/**
 	 * @var string The writer's role, see the XXX_ROLE constants.
 	 */
 	protected $role;
@@ -210,11 +200,6 @@ abstract class RdfWriterBase implements RdfWriter {
 	}
 
 	/**
-	 * Returns the writers role. The role determines the behavior of the writer with respect
-	 * to which states and transitions are possible: a BNODE_ROLE writer would for instance
-	 * not accept a call to about(), since it can only process triples about a single subject
-	 * (the blank node it represents).
-	 *
 	 * @return string A string corresponding to one of the the XXX_ROLE constants.
 	 */
 	final public function getRole() {
