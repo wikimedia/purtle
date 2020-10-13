@@ -56,7 +56,8 @@
 			"parallel-lint . --exclude vendor",
 			"phpunit",
 			"covers-validator",
-			"minus-x check ."
+			"minus-x check .",
+			"composer cs"
 		],
 		"cs": [
 			"phpcs -p -s",
