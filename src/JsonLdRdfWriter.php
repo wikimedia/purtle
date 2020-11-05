@@ -28,7 +28,7 @@ class JsonLdRdfWriter extends RdfWriterBase {
 	 * would be broken if an explicit "@type" was added to the context
 	 * for the predicate.
 	 *
-	 * @var boolean[]
+	 * @var bool[]
 	 */
 	protected $defaulted = [];
 
