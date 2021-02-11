@@ -2,7 +2,6 @@
 <ruleset>
 	<rule ref="./vendor/mediawiki/mediawiki-codesniffer/MediaWiki">
 		<exclude name="MediaWiki.WhiteSpace.SpaceBeforeSingleLineComment.NewLineComment" />
-		<exclude name="PSR12.Properties.ConstantVisibility.NotFound" />
 	</rule>
 
 	<rule ref="Generic.Files.InlineHTML" />
