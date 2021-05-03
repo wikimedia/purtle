@@ -428,7 +428,7 @@ class JsonLdRdfWriter extends RdfWriterBase {
 
 		if ( $name === self::RDF_TYPE_IRI ) {
 			$name = '@type';
-			$this->values = array_map( function ( array $val ) {
+			$this->values = array_map( static function ( array $val ) {
 				return $val[ '@id' ];
 			}, $this->values );
 		}
