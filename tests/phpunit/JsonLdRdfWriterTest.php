@@ -33,14 +33,14 @@ class JsonLdRdfWriterTest extends RdfWriterTestBase {
 
 	public function testEncode() {
 		$writer = new JsonLdRdfWriter();
-		$this->assertEquals( $writer->encode( 'foo{bar}bat', 0 ), '"foo{bar}bat"' );
-		$this->assertEquals( $writer->encode( [], 0 ), '' );
-		$this->assertEquals( $writer->encode( [
+		$this->assertEquals( '"foo{bar}bat"', $writer->encode( 'foo{bar}bat', 0 ) );
+		$this->assertSame( '', $writer->encode( [], 0 ) );
+		$this->assertEquals( '    "@id": "foo"', $writer->encode( [
 			'@id' => 'foo'
-		], 0 ), '    "@id": "foo"' );
+		], 0 ) );
 		$this->assertEquals(
-			$writer->encode( [ 1, 2, 3 ], 0 ),
-			"    1,\n    2,\n    3"
+			"    1,\n    2,\n    3",
+			$writer->encode( [ 1, 2, 3 ], 0 )
 		);
 	}
 
