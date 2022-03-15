@@ -138,6 +138,7 @@ class XmlRdfWriter extends RdfWriterBase {
 		}
 
 		return [
+			// @phan-suppress-next-line PhanTypeMismatchReturn
 			"rdf:$name" => $value
 		];
 	}

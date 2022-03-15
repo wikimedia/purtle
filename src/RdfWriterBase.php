@@ -36,7 +36,7 @@ abstract class RdfWriterBase implements RdfWriter {
 	protected const STATE_FINISH = 666;
 
 	/**
-	 * @var string the current state
+	 * @var int the current state
 	 */
 	private $state = self::STATE_START;
 
@@ -225,6 +225,7 @@ abstract class RdfWriterBase implements RdfWriter {
 	 */
 	protected function expandShorthand( &$base, &$local ) {
 		if ( $local === null && isset( $this->shorthands[$base] ) ) {
+			// @phan-suppress-next-line PhanTypeInvalidExpressionArrayDestructuring
 			list( $base, $local ) = $this->shorthands[$base];
 		}
 	}
