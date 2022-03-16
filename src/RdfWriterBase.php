@@ -43,7 +43,7 @@ abstract class RdfWriterBase implements RdfWriter {
 	/**
 	 * Shorthands that can be used in place of IRIs, e.g. ("a" to mean rdf:type).
 	 *
-	 * @var string[] a map of shorthand names to [ $base, $local ] pairs.
+	 * @var string[][] a map of shorthand names to [ $base, $local ] pairs.
 	 * @todo Handle "a" as a special case directly. Use for custom "variables" like %currentValue
 	 *  instead.
 	 */
@@ -225,7 +225,6 @@ abstract class RdfWriterBase implements RdfWriter {
 	 */
 	protected function expandShorthand( &$base, &$local ) {
 		if ( $local === null && isset( $this->shorthands[$base] ) ) {
-			// @phan-suppress-next-line PhanTypeInvalidExpressionArrayDestructuring
 			list( $base, $local ) = $this->shorthands[$base];
 		}
 	}

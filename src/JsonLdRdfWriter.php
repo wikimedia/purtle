@@ -18,7 +18,7 @@ class JsonLdRdfWriter extends RdfWriterBase {
 	 *
 	 * @see https://www.w3.org/TR/json-ld/#the-context
 	 *
-	 * @var string[]
+	 * @var array[]
 	 */
 	protected $context = [];
 
@@ -41,7 +41,7 @@ class JsonLdRdfWriter extends RdfWriterBase {
 	 *
 	 * @see https://www.w3.org/TR/json-ld/#named-graphs
 	 *
-	 * @var array[]|null
+	 * @var array|null
 	 */
 	private $graph = [];
 
@@ -398,7 +398,6 @@ class JsonLdRdfWriter extends RdfWriterBase {
 		if ( !$forceExpand ) {
 			$pred = $this->getCurrentTerm();
 			if ( $type === self::DEFAULT_TYPE ) {
-				// @phan-suppress-next-line PhanTypeMismatchDimFetch
 				if ( !isset( $this->context[ $pred ][ '@type' ] ) ) {
 					$this->defaulted[ $pred ] = true;
 				}
