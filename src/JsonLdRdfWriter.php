@@ -198,7 +198,6 @@ class JsonLdRdfWriter extends RdfWriterBase {
 		}
 		$this->expandShorthand( $base, $local );
 		if ( $local === null ) {
-			// @phan-suppress-next-line PhanTypeMismatchReturnNullable
 			return $base;
 		} elseif ( $base !== '_' && !isset( $this->prefixes[ $local ] ) ) {
 			// Prefixes get priority over field names in @context
@@ -236,7 +235,6 @@ class JsonLdRdfWriter extends RdfWriterBase {
 		// can optimize our output and hoist the single node to top level.
 		if ( $this->role === self::DOCUMENT_ROLE ) {
 			if ( ( !$this->disableGraphOpt ) && count( $this->graph ) === 1 ) {
-				// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 				$this->write( $this->encode( $this->graph[0], 0 ) );
 				$this->graph = null; // We're done with @graph.
 			} else {
