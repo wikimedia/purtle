@@ -28,7 +28,7 @@
 		"irc": "irc://irc.libera.chat/wikimedia-dev"
 	},
 	"require": {
-		"php": ">=7.2.9"
+		"php": ">=7.4"
 	},
 	"require-dev": {
 		"mediawiki/mediawiki-codesniffer": "40.0.1",
