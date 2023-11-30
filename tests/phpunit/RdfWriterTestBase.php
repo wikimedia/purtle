@@ -39,7 +39,7 @@ abstract class RdfWriterTestBase extends \PHPUnit\Framework\TestCase {
 	public function testGetMimeType() {
 		$mimeType = $this->newWriter()->getMimeType();
 		$this->assertIsString( $mimeType );
-		$this->assertRegExp( '/^\w+\/[\w-]+(\+(xml|json))?(; charset=UTF-8)?$/', $mimeType );
+		$this->assertMatchesRegularExpression( '/^\w+\/[\w-]+(\+(xml|json))?(; charset=UTF-8)?$/', $mimeType );
 	}
 
 	public function testTriples() {
