@@ -52,7 +52,7 @@ class BNodeLabeler {
 	public function getLabel( $label = null ) {
 		if ( $label === null ) {
 			$label = $this->prefix . $this->counter;
-			$this->counter ++;
+			$this->counter++;
 		}
 
 		return $label;

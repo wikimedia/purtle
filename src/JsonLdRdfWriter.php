@@ -191,7 +191,7 @@ class JsonLdRdfWriter extends RdfWriterBase {
 	 * @return string
 	 */
 	private function getCurrentTerm() {
-		list( $base, $local ) = $this->currentPredicate;
+		[ $base, $local ] = $this->currentPredicate;
 		$predIRI = $this->toIRI( $base, $local );
 		if ( $predIRI === self::RDF_TYPE_IRI ) {
 			return $predIRI;

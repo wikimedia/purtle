@@ -225,7 +225,7 @@ abstract class RdfWriterBase implements RdfWriter {
 	 */
 	protected function expandShorthand( &$base, &$local ) {
 		if ( $local === null && isset( $this->shorthands[$base] ) ) {
-			list( $base, $local ) = $this->shorthands[$base];
+			[ $base, $local ] = $this->shorthands[$base];
 		}
 	}
 
