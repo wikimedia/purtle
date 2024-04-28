@@ -3,20 +3,21 @@
 namespace Wikimedia\Purtle\Tests;
 
 use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 use Wikimedia\Purtle\RdfWriter;
 use Wikimedia\Purtle\RdfWriterFactory;
 
 /**
- * @covers Wikimedia\Purtle\RdfWriterFactory
+ * @covers \Wikimedia\Purtle\RdfWriterFactory
  *
- * @uses Wikimedia\Purtle\BNodeLabeler
- * @uses Wikimedia\Purtle\N3Quoter
- * @uses Wikimedia\Purtle\N3RdfWriterBase
- * @uses Wikimedia\Purtle\NTriplesRdfWriter
- * @uses Wikimedia\Purtle\RdfWriterBase
- * @uses Wikimedia\Purtle\JsonLdRdfWriter
- * @uses Wikimedia\Purtle\TurtleRdfWriter
- * @uses Wikimedia\Purtle\XmlRdfWriter
+ * @uses \Wikimedia\Purtle\BNodeLabeler
+ * @uses \Wikimedia\Purtle\N3Quoter
+ * @uses \Wikimedia\Purtle\N3RdfWriterBase
+ * @uses \Wikimedia\Purtle\NTriplesRdfWriter
+ * @uses \Wikimedia\Purtle\RdfWriterBase
+ * @uses \Wikimedia\Purtle\JsonLdRdfWriter
+ * @uses \Wikimedia\Purtle\TurtleRdfWriter
+ * @uses \Wikimedia\Purtle\XmlRdfWriter
  *
  * @group Purtle
  *
@@ -24,7 +25,7 @@ use Wikimedia\Purtle\RdfWriterFactory;
  * @author Daniel Kinzler
  * @author Thiemo Kreuz
  */
-class RdfWriterFactoryTest extends \PHPUnit\Framework\TestCase {
+class RdfWriterFactoryTest extends TestCase {
 
 	public function testSupportedFormats() {
 		$factory = new RdfWriterFactory();

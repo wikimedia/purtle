@@ -35,7 +35,7 @@ class JsonLdRdfWriter extends RdfWriterBase {
 	/**
 	 * The JSON-LD "@graph", which lists all the nodes described by this JSON-LD object.
 	 * We apply an optimization eliminating the "@graph" entry if it consists
-	 * of a single node; in that case we will set $this->graph to null in
+	 * of a single node; in that case, we will set $this->graph to null in
 	 * #finishJson() to ensure that the deferred callback in #finishDocument()
 	 * doesn't later emit "@graph".
 	 *
@@ -152,7 +152,7 @@ class JsonLdRdfWriter extends RdfWriterBase {
 		} else {
 			if ( $base !== '_' && isset( $this->prefixes[ $base ] ) ) {
 				if ( $base === '' ) {
-					// Empty prefix not supported; use full IRI
+					// Empty prefixes are not supported; use full IRI
 					return $this->prefixes[ $base ] . $local;
 				}
 				if ( !isset( $this->context[ $base ] ) ) {

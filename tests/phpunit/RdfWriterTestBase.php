@@ -2,6 +2,7 @@
 
 namespace Wikimedia\Purtle\Tests;
 
+use PHPUnit\Framework\TestCase;
 use Wikimedia\Purtle\BNodeLabeler;
 use Wikimedia\Purtle\RdfWriter;
 use Wikimedia\Purtle\RdfWriterFactory;
@@ -14,7 +15,7 @@ use Wikimedia\Purtle\RdfWriterFactory;
  * @author Daniel Kinzler
  * @author Thiemo Kreuz
  */
-abstract class RdfWriterTestBase extends \PHPUnit\Framework\TestCase {
+abstract class RdfWriterTestBase extends TestCase {
 
 	/**
 	 * @return string

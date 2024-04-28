@@ -28,6 +28,7 @@
 		"irc": "irc://irc.libera.chat/wikimedia-dev"
 	},
 	"require": {
+		"ext-json": "*",
 		"php": ">=7.4"
 	},
 	"require-dev": {

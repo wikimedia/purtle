@@ -3,10 +3,11 @@
 namespace Wikimedia\Purtle\Tests;
 
 use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 use Wikimedia\Purtle\BNodeLabeler;
 
 /**
- * @covers Wikimedia\Purtle\BNodeLabeler
+ * @covers \Wikimedia\Purtle\BNodeLabeler
  *
  * @group Purtle
  *
@@ -14,7 +15,7 @@ use Wikimedia\Purtle\BNodeLabeler;
  * @author Daniel Kinzler
  * @author Thiemo Kreuz
  */
-class BNodeLabelerTest extends \PHPUnit\Framework\TestCase {
+class BNodeLabelerTest extends TestCase {
 
 	/**
 	 * @dataProvider invalidConstructorArgumentsProvider

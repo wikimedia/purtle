@@ -45,7 +45,7 @@ class BNodeLabeler {
 	}
 
 	/**
-	 * @param string|null $label node label, will be generated if not given.
+	 * @param string|null $label node label; will be generated if not given.
 	 *
 	 * @return string
 	 */

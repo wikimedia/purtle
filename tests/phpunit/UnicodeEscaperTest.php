@@ -5,7 +5,7 @@ namespace Wikimedia\Purtle\Tests;
 use Wikimedia\Purtle\UnicodeEscaper;
 
 /**
- * @covers Wikimedia\Purtle\UnicodeEscaper
+ * @covers \Wikimedia\Purtle\UnicodeEscaper
  *
  * @group Purtle
  * @group RdfWriter

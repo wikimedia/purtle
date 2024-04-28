@@ -254,7 +254,7 @@ abstract class RdfWriterBase implements RdfWriter {
 	/**
 	 * @see RdfWriter::blank()
 	 *
-	 * @param string|null $label node label, will be generated if not given.
+	 * @param string|null $label node label; will be generated if not given.
 	 *
 	 * @return string
 	 */
