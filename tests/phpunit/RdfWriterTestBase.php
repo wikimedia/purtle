@@ -402,7 +402,7 @@ abstract class RdfWriterTestBase extends TestCase {
 	 *
 	 * @return RdfWriter
 	 */
-	protected function newWriterFactory( BNodeLabeler $labeler = null ) {
+	protected function newWriterFactory( ?BNodeLabeler $labeler = null ) {
 		$factory = new RdfWriterFactory();
 		return $factory->getWriter( $factory->getFormatName( $this->getFileSuffix() ), $labeler );
 	}

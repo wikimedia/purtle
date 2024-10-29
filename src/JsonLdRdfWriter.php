@@ -97,7 +97,7 @@ class JsonLdRdfWriter extends RdfWriterBase {
 	 * @param string $role
 	 * @param BNodeLabeler|null $labeler
 	 */
-	public function __construct( $role = parent::DOCUMENT_ROLE, BNodeLabeler $labeler = null ) {
+	public function __construct( $role = parent::DOCUMENT_ROLE, ?BNodeLabeler $labeler = null ) {
 		parent::__construct( $role, $labeler );
 
 		// The following named methods are protected, not private, so we
