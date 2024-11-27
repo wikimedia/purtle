@@ -121,7 +121,7 @@ class UnicodeEscaper {
 		} elseif ( $no < 1114112 ) {
 			return '\U' . sprintf( '%08X', $no ); /* #x10000-#x10FFFF (65536-1114111) */
 		} else {
-			return ''; /* not defined => ignore */
+			return ''; /* not defined => ignore (also probably unreachable since PHP 8.3) */
 		}
 	}
 

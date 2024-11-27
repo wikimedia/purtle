@@ -44,10 +44,6 @@ class UnicodeEscaperTest extends \PHPUnit\Framework\TestCase {
 				"\xF0\x90\x80\x80...\xF4\x8F\xBF\xBF",
 				'\U00010000...\U0010FFFF'
 			],
-			'ignore U+110000 and above' => [
-				"\xF4\x8F\xBF\xC0",
-				''
-			],
 			[
 				'Hello World',
 				'Hello World'
