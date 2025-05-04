@@ -18,7 +18,7 @@ use Wikimedia\Purtle\UnicodeEscaper;
  */
 class N3QuoterTest extends TestCase {
 
-	public function provideEscapeIRI() {
+	public static function provideEscapeIRI() {
 		return [
 			[
 				'http://acme.com/test.php?x=y&foo=bar#part',
@@ -52,7 +52,7 @@ class N3QuoterTest extends TestCase {
 		$this->assertEquals( $expected, $quoter->escapeIRI( $iri ) );
 	}
 
-	public function provideEscapeLiteral() {
+	public static function provideEscapeLiteral() {
 		$shortCircuitedChars = ' !#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ' .
 			'[]^_`abcdefghijklmnopqrstuvwxyz{|}~';
 

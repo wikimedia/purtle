@@ -68,7 +68,7 @@ class RdfWriterFactoryTest extends TestCase {
 		$this->assertFalse( $factory->getFormatName( 'invalid' ) );
 	}
 
-	public function provideFormats() {
+	public static function provideFormats() {
 		return [
 			// N3 (currently falls through to turtle)
 			[ 'N3', 'n3', 'n3', 'text/n3' ],

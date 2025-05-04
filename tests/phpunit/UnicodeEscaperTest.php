@@ -16,7 +16,7 @@ use Wikimedia\Purtle\UnicodeEscaper;
  */
 class UnicodeEscaperTest extends \PHPUnit\Framework\TestCase {
 
-	public function provideEscapeString() {
+	public static function provideEscapeString() {
 		return [
 			'control characters' => [
 				"\x00...\x08\x0B\x0C\x0E...\x19",

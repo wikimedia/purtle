@@ -25,7 +25,7 @@ class BNodeLabelerTest extends TestCase {
 		new BNodeLabeler( $prefix, $start );
 	}
 
-	public function invalidConstructorArgumentsProvider() {
+	public static function invalidConstructorArgumentsProvider() {
 		return [
 			[ null, 1 ],
 			[ 1, 1 ],
