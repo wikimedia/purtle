@@ -43,7 +43,11 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"Wikimedia\\Purtle\\": "src/",
+			"Wikimedia\\Purtle\\": "src/"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
 			"Wikimedia\\Purtle\\Tests\\": "tests/phpunit/"
 		}
 	},
