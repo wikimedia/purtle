@@ -18,7 +18,7 @@ class JsonLdRdfWriter extends RdfWriterBase {
 	 *
 	 * @see https://www.w3.org/TR/json-ld/#the-context
 	 *
-	 * @var array[]
+	 * @var array<string,string|array>
 	 */
 	protected $context = [];
 

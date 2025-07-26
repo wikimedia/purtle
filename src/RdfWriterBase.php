@@ -208,7 +208,7 @@ abstract class RdfWriterBase implements RdfWriter {
 
 	/**
 	 * Appends string to the output buffer.
-	 * @param string $w
+	 * @param string|Closure|RdfWriter $w
 	 */
 	final protected function write( $w ) {
 		$this->buffer[] = $w;
@@ -624,7 +624,7 @@ abstract class RdfWriterBase implements RdfWriter {
 	 * Perform any expansion (shorthand to qname, qname to IRI) desired
 	 * for type identifiers.
 	 *
-	 * @param string|null &$base
+	 * @param string &$base
 	 * @param string|null &$local
 	 */
 	protected function expandType( &$base, &$local ) {
