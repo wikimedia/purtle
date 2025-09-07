@@ -18,7 +18,7 @@ namespace Wikimedia\Purtle;
  *
  * To get the generated RDF output, use the drain() method.
  *
- * @note: The contract of this interface follows the GIGO principle, that is,
+ * @note The contract of this interface follows the GIGO principle, that is,
  * implementations are not required to ensure valid output or prompt failure on
  * invalid input. Speed should generally be favored over safety.
  *
