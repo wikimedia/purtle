@@ -39,7 +39,7 @@
 		"php-parallel-lint/php-console-highlighter": "1.0.0",
 		"php-parallel-lint/php-parallel-lint": "1.4.0",
 		"phpmd/phpmd": "~2.3",
-		"phpunit/phpunit": "10.5.58"
+		"phpunit/phpunit": "10.5.63"
 	},
 	"autoload": {
 		"psr-4": {
