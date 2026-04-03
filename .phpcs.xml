@@ -10,6 +10,7 @@
 		<exclude-pattern>RdfWriterFactory\.php</exclude-pattern>
 	</rule>
 	<rule ref="Generic.Metrics.NestingLevel" />
+	<rule ref="Generic.PHP.RequireStrictTypes" />
 
 	<rule ref="MediaWiki.NamingConventions.LowerCamelFunctionsName.FunctionName">
 		<exclude-pattern>RdfWriterTestBase\.php</exclude-pattern>

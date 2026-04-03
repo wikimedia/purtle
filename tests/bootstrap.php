@@ -1,4 +1,5 @@
 <?php
+declare( strict_types = 1 );
 
 /**
  * PHPUnit test bootstrap file for the Purtle component.
