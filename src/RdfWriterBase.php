@@ -440,7 +440,7 @@ abstract class RdfWriterBase implements RdfWriter {
 	/**
 	 * @see RdfWriter::value()
 	 *
-	 * @param string $value the value encoded as a string
+	 * @param string|int|float|bool $value
 	 * @param string|null $typeBase The data type's QName prefix if $typeLocal is given,
 	 *        or an IRI or shorthand if $typeLocal is null.
 	 * @param string|null $typeLocal The data type's  QName suffix,
@@ -452,31 +452,22 @@ abstract class RdfWriterBase implements RdfWriter {
 		$this->state( self::STATE_OBJECT );
 
 		if ( $typeBase === null && !is_string( $value ) ) {
-			$vtype = gettype( $value );
-			switch ( $vtype ) {
-				case 'integer':
-					$typeBase = 'xsd';
-					$typeLocal = 'integer';
-					$value = "$value";
-					break;
-
-				case 'double':
-					$typeBase = 'xsd';
-					$typeLocal = 'double';
-					$value = "$value";
-					break;
-
-				case 'boolean':
-					$typeBase = 'xsd';
-					$typeLocal = 'boolean';
-					$value = $value ? 'true' : 'false';
-					break;
+			if ( is_int( $value ) ) {
+				$typeBase = 'xsd';
+				$typeLocal = 'integer';
+			} elseif ( is_float( $value ) ) {
+				$typeBase = 'xsd';
+				$typeLocal = 'double';
+			} elseif ( is_bool( $value ) ) {
+				$typeBase = 'xsd';
+				$typeLocal = 'boolean';
+				$value = $value ? 'true' : 'false';
 			}
 		}
 
 		$this->expandType( $typeBase, $typeLocal );
 
-		$this->writeValue( $value, $typeBase, $typeLocal );
+		$this->writeValue( (string)$value, $typeBase, $typeLocal );
 		return $this;
 	}
 

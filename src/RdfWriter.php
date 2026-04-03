@@ -136,7 +136,7 @@ interface RdfWriter {
 	 * Can only follow a call to say() or a call to one of is(), text(), or value().
 	 * Should fail if called at an inappropriate time in the output sequence.
 	 *
-	 * @param string $value the value encoded as a string
+	 * @param string|int|float|bool $value
 	 * @param string|null $typeBase The data type's QName prefix if $typeLocal is given,
 	 *        or an IRI or shorthand if $typeLocal is null.
 	 * @param string|null $typeLocal The data type's  QName suffix,
